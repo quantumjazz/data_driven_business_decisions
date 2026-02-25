@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Quarto internals (don't need to commit these)
+.quarto/
+
+# Lock files from LibreOffice/Excel
+*.~lock.*
+
+# Old output folder (now using docs/)
+_output/

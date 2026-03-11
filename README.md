@@ -31,9 +31,12 @@ Assessment is based on participation, projects, and practical tasks — no tradi
 
 ## Slides
 
+Published on GitHub Pages: [quantumjazz.github.io/data_driven_business_decisions](https://quantumjazz.github.io/data_driven_business_decisions/)
+
 | # | Lecture | Slides |
 |---|---------|--------|
 | 01 | The Cost of Bad Decisions *(Module 1 — Week 1)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-01/) |
+| 02 | Storytelling with Numbers *(Module 2 — Week 3)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-02/) |
 
 ---
 
@@ -72,8 +75,13 @@ data_driven_business_decisions/
 ├── lecture-01/          # Source files for Lecture 1
 │   ├── index.qmd        # Quarto slide source
 │   └── cafe-data.xlsx   # Case study data
+├── lecture-02/          # Source files for Lecture 2
+│   ├── index.qmd        # Quarto slide source
+│   └── images/          # Embedded visual assets
 ├── docs/                # Rendered HTML (served via GitHub Pages)
-│   └── lecture-01/
+│   ├── lecture-01/
+│   │   └── index.html
+│   └── lecture-02/
 │       └── index.html
 ├── _quarto.yml          # Quarto project configuration
 ├── styles.scss          # Custom slide styles

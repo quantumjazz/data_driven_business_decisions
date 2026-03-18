@@ -37,6 +37,7 @@ Published on GitHub Pages: [quantumjazz.github.io/data_driven_business_decisions
 |---|---------|--------|
 | 01 | The Cost of Bad Decisions *(Module 1 — Week 1)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-01/) |
 | 02 | Storytelling with Numbers *(Module 2 — Week 3)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-02/) |
+| 03 | Building Models That Matter *(Module 2 — Week 4)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-03/) |
 
 ---
 
@@ -78,10 +79,15 @@ data_driven_business_decisions/
 ├── lecture-02/          # Source files for Lecture 2
 │   ├── index.qmd        # Quarto slide source
 │   └── images/          # Embedded visual assets
+├── lecture-03/          # Source files for Lecture 3
+│   ├── index.qmd        # Quarto slide source
+│   └── technostart-data.xlsx
 ├── docs/                # Rendered HTML (served via GitHub Pages)
 │   ├── lecture-01/
 │   │   └── index.html
-│   └── lecture-02/
+│   ├── lecture-02/
+│   │   └── index.html
+│   └── lecture-03/
 │       └── index.html
 ├── _quarto.yml          # Quarto project configuration
 ├── styles.scss          # Custom slide styles

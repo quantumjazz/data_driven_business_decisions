@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="bg"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="доц. д-р Виктор Аврамов">
+  <meta name="dcterms.date" content="2026-04-08">
+  <title>Анализ на поведението на клиентите</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-e2c65b9f1c2b33b9a3e737a7701d7c5b.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="index_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="index_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Анализ на поведението на клиентите</h1>
+  <p class="subtitle">Модул 3: Прогнозиране на бъдещето</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+доц. д-р Виктор Аврамов 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-04-08</p>
+</section>
+<section class="slide level2 center">
+<h2>Докъде стигнахме?</h2>
+<div class="highlight-box">
+<p><strong>Модул 3: Прогнозиране на бъдещето</strong> (Седмици 6–8)</p>
+<p>Седмица 6: Прогнозиране без страх</p>
+<p>Седмица 7: <strong>Анализ на поведението на клиентите</strong> ← Днес</p>
+<p>Седмица 8: Риск и несигурност в бизнеса</p>
+</div>
+<p><br></p>
+<p>Миналия път научихме как да <strong>предвиждаме</strong> бъдещи стойности (тренд линии, Forecast Sheet). Днес задаваме различен въпрос: <strong>кои</strong> са нашите клиенти и <strong>как</strong> се държат?</p>
+</section>
+<section class="slide level2">
+<h2>Какво направихме досега?</h2>
+<pre><code>Модул 1                  Модул 2                                  Модул 3
+┌──────────────┐  ┌─────────────────────────────────────────┐  ┌───────────────────────────────────────┐
+│ Защо данните │  │  Седм. 3       Седм. 4      Седм. 5     │  │  Седм. 6       Седм. 7     Седм. 8    │
+│ са важни     │→ │  Истории  →    Модели  →    Табла       │→ │  Прогнози →    КЛИЕНТИ →   Риск      │
+│              │  │ (разказваме)  (изчисляваме) (показваме) │  │ (предвиждаме)(анализираме)(оценяваме) │
+└──────────────┘  └─────────────────────────────────────────┘  └───────────────────────────────────────┘</code></pre>
+<p><br></p>
+<p>В Седмица 6 отговаряхме на въпроса: <strong>“Какво ще се случи?”</strong> (прогнози за приходи, продажби).</p>
+<p>Сега отговаряме на въпроса: <strong>“Кои клиенти са ни най-важни и какво да правим с всеки от тях?”</strong></p>
+</section>
+<section class="slide level2">
+<h2>След тази лекция трябва да можете</h2>
+<ul>
+<li>Да обясните защо <strong>не всички клиенти са еднакви</strong> и какво означава това за бизнеса</li>
+<li>Да приложите <strong>правилото 80/20</strong> (Парето) за идентифициране на ключови клиенти</li>
+<li>Да изчислите <strong>RFM скор</strong> (Recency, Frequency, Monetary) в Excel</li>
+<li>Да <strong>сегментирате</strong> клиенти в групи на база поведението им</li>
+<li>Да предложите <strong>конкретни действия</strong> за всеки клиентски сегмент</li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p>Отново няма сложна математика — само <strong>логика, формули в Excel и бизнес мислене</strong>. Целта е да превърнете данни за транзакции в <strong>стратегия за клиентите</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Защо да анализираме клиентите?</h2>
+<div class="highlight-box">
+<p><strong>Не всички клиенти са създадени равни.</strong> Някои купуват често и харчат много. Други са дошли веднъж и са изчезнали. Ако се отнасяме еднакво към всички — губим пари.</p>
+</div>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Без анализ на клиентите:</strong></p>
+<ul>
+<li>Изпращаме еднакви имейли на всички</li>
+<li>Не знаем кои клиенти сме загубили</li>
+<li>Харчим маркетинг бюджет напосоки</li>
+<li>Реагираме, вместо да действаме проактивно</li>
+</ul>
+</div><div class="column">
+<p><strong>С анализ на клиентите:</strong></p>
+<ul>
+<li>Персонализирани оферти за всеки сегмент</li>
+<li>Ранно предупреждение, когато важен клиент “изчезва”</li>
+<li>Фокусиран маркетинг бюджет</li>
+<li>Стратегия вместо реакция</li>
+</ul>
+</div></div>
+<p><br></p>
+<blockquote>
+<p>“Да намериш нов клиент струва <strong>5–7 пъти повече</strong>, отколкото да задържиш съществуващ.” — Harvard Business Review</p>
+</blockquote>
+</section>
+<section class="slide level2">
+<h2>Правилото 80/20 (Парето)</h2>
+<div class="highlight-box">
+<p><strong>Принципът на Парето:</strong> Приблизително <strong>80% от приходите</strong> идват от <strong>20% от клиентите</strong>. Това не е точна формула, а наблюдение, което се среща навсякъде в бизнеса.</p>
+</div>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Къде го виждаме?</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Приходи</strong></td>
+<td>20% от клиентите генерират 80% от оборота</td>
+</tr>
+<tr class="even">
+<td><strong>Оплаквания</strong></td>
+<td>20% от проблемите причиняват 80% от жалбите</td>
+</tr>
+<tr class="odd">
+<td><strong>Продукти</strong></td>
+<td>20% от продуктите носят 80% от печалбата</td>
+</tr>
+<tr class="even">
+<td><strong>Служители</strong></td>
+<td>20% от екипа създава 80% от резултатите</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="case-study">
+<p><strong>Практическият въпрос:</strong> Ако 20% от клиентите генерират 80% от приходите ви, <strong>знаете ли кои са тези 20%?</strong> И какво правите, за да ги задържите?</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+<h2>Казус: “КнигоМания”</h2>
+<div class="case-study">
+<p><strong>КнигоМания</strong> е малък онлайн магазин за книги в София. Продава пет категории: <strong>художествена литература, бизнес книги, наука и технологии, детски книги и учебници</strong>.</p>
+<p>Магазинът работи от <strong>юли 2024 г.</strong> и към декември 2025 г. има <strong>30 регистрирани клиенти</strong> с общо <strong>179 транзакции</strong>.</p>
+<p>Собственикът забелязва, че някои клиенти се връщат постоянно, а други — купуват веднъж и изчезват.</p>
+</div>
+<p><br></p>
+<p>Управителят иска да знае:</p>
+<ol type="1">
+<li>Кои клиенти са <strong>най-ценни</strong> и колко от приходите генерират?</li>
+<li>Кои клиенти <strong>са спрели</strong> да купуват и може ли да ги върнем?</li>
+<li>Как да <strong>групираме</strong> клиентите, за да им изпращаме различни оферти?</li>
+</ol>
+<p><br></p>
+<div class="highlight-box">
+<p>Отворете файла <strong>knigomania-data.xlsx</strong> — шийт “Транзакции”. Разгледайте данните: 179 реда, по един за всяка покупка.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Данните</h2>
+<p>Файл: <strong>knigomania-data.xlsx</strong> (3 шийта)</p>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Шийт</th>
+<th>Съдържание</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Транзакции</strong></td>
+<td>179 реда: ID клиент, име, дата, категория, продукт, количество, стойност</td>
+</tr>
+<tr class="even">
+<td><strong>RFM Анализ</strong></td>
+<td>30 реда (по един за клиент): последна покупка, дни, честота, обща стойност — и празни колони за RFM скорове</td>
+</tr>
+<tr class="odd">
+<td><strong>Сегментация</strong></td>
+<td>Шаблон за клиентски сегменти — попълваме заедно</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Задача:</strong> Отворете шийт “Транзакции”. Колко различни клиенти виждате? Кой клиент има най-много покупки? (Подсказка: сортирайте по колона A.)</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+<h2>Част 1: Парето анализ — кои клиенти движат бизнеса?</h2>
+<p>Преди да сегментираме, нека видим <strong>разпределението на приходите</strong> по клиенти.</p>
+<p><br></p>
+<p><strong>Стъпки в Excel:</strong></p>
+<ol type="1">
+<li>Отворете шийт “Транзакции”</li>
+<li>Създайте <strong>Pivot Table</strong> (Insert → PivotTable)</li>
+<li>Rows: <strong>Име</strong> (или ID клиент)</li>
+<li>Values: <strong>Sum of Стойност (лв.)</strong></li>
+<li>Сортирайте по стойност <strong>от най-голяма към най-малка</strong></li>
+</ol>
+<p><br></p>
+<div class="case-study">
+<p><strong>Какво очакваме:</strong> Няколко клиенти ще имат значително по-високи суми от останалите. Тези “шампиони” са критично важни — ако ги загубим, приходите ни ще паднат драстично.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Парето: какво виждаме?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="207" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 206;"><span id="cb2-207"><a href=""></a>Plot <span class="op">=</span> <span class="im">import</span>(<span class="st">"https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"</span>)</span>
+<span id="cb2-208"><a href=""></a>plotWidth <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1100</span>)</span>
+<span id="cb2-209"><a href=""></a></span>
+<span id="cb2-210"><a href=""></a><span class="co">// Customer revenue data (sorted descending)</span></span>
+<span id="cb2-211"><a href=""></a>customerRevenue <span class="op">=</span> [</span>
+<span id="cb2-212"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Александър М."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">983</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-213"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Мария И."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">789</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-214"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Ана Н."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">754</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-215"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Георги П."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">632</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-216"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Калина Й."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">547</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-217"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Елена Д."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">469</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-218"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Десислава Г."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">412</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-219"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Николай А."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">351</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-220"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Петър С."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">339</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-221"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Стоян К."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">304</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-222"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Лилия П."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">279</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-223"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Росица А."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">262</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-224"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Цветелина Б."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">210</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-225"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Радослав Г."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">185</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-226"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Христо В."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">171</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-227"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Виктория С."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">168</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-228"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Иван Т."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">153</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-229"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Надежда М."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">148</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-230"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Силвия Д."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">139</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-231"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Красимир Ц."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">102</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-232"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Габриела З."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">97</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-233"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Мартина Б."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">86</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-234"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Борис Х."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">79</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-235"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Яна Б."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">72</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-236"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Теодора К."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">53</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-237"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Тихомир Р."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">48</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-238"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Димитър П."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">44</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-239"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Валентин С."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">31</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-240"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Емил Н."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb2-241"><a href=""></a>  {<span class="dt">name</span><span class="op">:</span> <span class="st">"Пламен Д."</span><span class="op">,</span> <span class="dt">revenue</span><span class="op">:</span> <span class="dv">18</span><span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">0</span>}</span>
+<span id="cb2-242"><a href=""></a>]</span>
+<span id="cb2-243"><a href=""></a></span>
+<span id="cb2-244"><a href=""></a>totalRev <span class="op">=</span> customerRevenue<span class="op">.</span><span class="fu">reduce</span>((s<span class="op">,</span> d) <span class="kw">=&gt;</span> s <span class="op">+</span> d<span class="op">.</span><span class="at">revenue</span><span class="op">,</span> <span class="dv">0</span>)</span>
+<span id="cb2-245"><a href=""></a>cumSum <span class="op">=</span> {<span class="kw">let</span> s <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="cf">return</span> customerRevenue<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {s <span class="op">+=</span> d<span class="op">.</span><span class="at">revenue</span><span class="op">;</span> <span class="cf">return</span> {<span class="op">...</span>d<span class="op">,</span> <span class="dt">cumPct</span><span class="op">:</span> s <span class="op">/</span> totalRev <span class="op">*</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">rank</span><span class="op">:</span> i <span class="op">+</span> <span class="dv">1</span>}})<span class="op">;</span>}</span>
+<span id="cb2-246"><a href=""></a></span>
+<span id="cb2-247"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-248"><a href=""></a>  <span class="dt">width</span><span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb2-249"><a href=""></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">360</span><span class="op">,</span></span>
+<span id="cb2-250"><a href=""></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb2-251"><a href=""></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb2-252"><a href=""></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"12px"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, sans-serif"</span>}<span class="op">,</span></span>
+<span id="cb2-253"><a href=""></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"6 клиенти (20%) генерират над 55% от приходите на КнигоМания"</span><span class="op">,</span></span>
+<span id="cb2-254"><a href=""></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Стълбове = приход на клиент (лв.), линия = кумулативен % от общия приход"</span><span class="op">,</span></span>
+<span id="cb2-255"><a href=""></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">tickRotate</span><span class="op">:</span> <span class="op">-</span><span class="dv">55</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> cumSum<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span>)}<span class="op">,</span></span>
+<span id="cb2-256"><a href=""></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Приход (лв.)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-257"><a href=""></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-258"><a href=""></a>    Plot<span class="op">.</span><span class="fu">rectY</span>([{<span class="dt">x1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">5.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">1050</span>}]<span class="op">,</span> {</span>
+<span id="cb2-259"><a href=""></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="st">"Александър М."</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="st">"Иван Т."</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">1050</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#dbeafe"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.4</span></span>
+<span id="cb2-260"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb2-261"><a href=""></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cumSum<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"name"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"revenue"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">rank</span> <span class="op">&lt;=</span> <span class="dv">6</span> <span class="op">?</span> <span class="st">"#2563eb"</span> <span class="op">:</span> <span class="st">"#94a3b8"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb2-262"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="st">"Елена Д."</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">980</span>}]<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="st">"← Топ 20% (шампиони)"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span> })<span class="op">,</span></span>
+<span id="cb2-263"><a href=""></a>  ]</span>
+<span id="cb2-264"><a href=""></a>})</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Топ 6 клиенти</strong> (20% от 30) генерират около <strong>55%</strong> от приходите</li>
+<li>Последните 10 клиенти (33%) генерират по-малко от <strong>8%</strong> от приходите</li>
+<li>Разпределението не е перфектно 80/20, но <strong>дисбалансът е ясен</strong></li>
+</ul>
+<div class="highlight-box">
+<p><strong>Извод:</strong> Малка група клиенти е критично важна. Загубата дори на <strong>един</strong> от тях е по-болезнена от загубата на пет “малки” клиенти.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Но Парето не е достатъчно</h2>
+<p>Парето ни казва <strong>кой е важен днес</strong>, но не отговаря на ключови въпроси:</p>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Въпрос</th>
+<th>Парето отговаря ли?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Кой клиент е <strong>спрял</strong> да купува?”</td>
+<td>❌ Не — вижда само сумата, не кога</td>
+</tr>
+<tr class="even">
+<td>“Кой е <strong>нов</strong> и може да стане лоялен?”</td>
+<td>❌ Не — нов клиент с малка сума е в дъното</td>
+</tr>
+<tr class="odd">
+<td>“Кой купува <strong>често</strong> но на малки суми?”</td>
+<td>❌ Не — не вижда честотата</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>За да отговорим на тези въпроси, трябва да разгледаме <strong>три измерения</strong> на клиентското поведение.</p>
+</section>
+<section class="slide level2">
+<h2>Част 2: RFM анализ — три въпроса за всеки клиент</h2>
+<div class="highlight-box">
+<p><strong>RFM</strong> = <strong>R</strong>ecency (скорошност) × <strong>F</strong>requency (честота) × <strong>M</strong>onetary (стойност)</p>
+<p>Три прости въпроса, които заедно рисуват пълна картина на клиентското поведение.</p>
+</div>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 15%">
+<col style="width: 35%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Измерение</th>
+<th>Въпрос</th>
+<th>Как го измерваме?</th>
+<th>Защо е важно?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R</strong> — Recency</td>
+<td>Кога е <strong>последната</strong> покупка?</td>
+<td>Дни от последната транзакция</td>
+<td>Скорошните клиенти е по-вероятно да купят отново</td>
+</tr>
+<tr class="even">
+<td><strong>F</strong> — Frequency</td>
+<td>Колко <strong>често</strong> купува?</td>
+<td>Брой транзакции за периода</td>
+<td>Честите клиенти са по-лоялни</td>
+</tr>
+<tr class="odd">
+<td><strong>M</strong> — Monetary</td>
+<td>Колко <strong>харчи</strong>?</td>
+<td>Обща стойност на покупките</td>
+<td>Високата стойност = висок приоритет</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="case-study">
+<p><strong>Пример:</strong> Клиент, който е купил <strong>вчера</strong> (R=висок), <strong>12 пъти</strong> за годината (F=висок), на обща стойност <strong>980 лв.</strong> (M=висок) — е <strong>шампион</strong>. Клиент, който е купил <strong>преди 11 месеца</strong> (R=нисък), <strong>1 път</strong> (F=нисък), за <strong>18 лв.</strong> (M=нисък) — е <strong>загубен</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Стъпка 1: Изчисляване на R, F, M</h2>
+<p>Отворете шийт <strong>“RFM Анализ”</strong> — колони A–F вече съдържат изчислените стойности за всеки клиент.</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Как са изчислени (ако искате да ги пресъздадете):</strong></p>
+<p><strong>Recency (колона D):</strong> Дни от последната покупка до 01.01.2026</p>
+<p>В шийт “Транзакции” можете да използвате:</p>
+<pre><code>=ДАТА(2026;1;1) - MAXIFS(C:C, A:A, A2)</code></pre>
+<p>или на английски:</p>
+<pre><code>=DATE(2026,1,1) - MAXIFS(C:C, A:A, A2)</code></pre>
+</div><div class="column">
+<p><strong>Frequency (колона E):</strong> Брой покупки</p>
+<pre><code>=COUNTIF(Транзакции!A:A, A2)</code></pre>
+<p><strong>Monetary (колона F):</strong> Обща стойност</p>
+<pre><code>=SUMIF(Транзакции!A:A, A2, Транзакции!G:G)</code></pre>
+<p><br></p>
+<div class="highlight-box">
+<p>Тези стойности вече са попълнени. Вашата задача е да ги <strong>превърнете в скорове</strong> (колони G–K).</p>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+<h2>Стъпка 2: Превръщане в скорове (1–5)</h2>
+<p>Суровите числа не са лесни за сравнение. Затова ги превръщаме в <strong>скорове от 1 до 5</strong>:</p>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Скор 5</strong> = най-добрият резултат, <strong>Скор 1</strong> = най-слабият</p>
+<p><strong>Внимание:</strong> За Recency, <strong>по-малко дни = по-добре</strong> (скор 5), защото означава скорошна покупка!</p>
+</div>
+<p><br></p>
+<p><strong>Как да определим границите?</strong> Използваме <strong>квинтили</strong> — разделяме клиентите на 5 равни групи:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Квинтил</th>
+<th>Percentile</th>
+<th>Скор за F и M</th>
+<th>Скор за R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Най-ниските 20%</td>
+<td>0–20%</td>
+<td>1</td>
+<td>5 (най-скорошни)</td>
+</tr>
+<tr class="even">
+<td>20–40%</td>
+<td></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>40–60%</td>
+<td></td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>60–80%</td>
+<td></td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Най-високите 20%</td>
+<td>80–100%</td>
+<td>5</td>
+<td>1 (най-отдавна)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="case-study">
+<p><strong>Забележете:</strong> За R скалата е <strong>обърната</strong> — клиент с R скор 5 е купил <strong>наскоро</strong> (малко дни), а с R скор 1 — <strong>отдавна</strong> (много дни).</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Стъпка 2: Скорове в Excel</h2>
+<p>В шийт “RFM Анализ” попълнете колони <strong>G, H, I</strong> (R скор, F скор, M скор).</p>
+<p><br></p>
+<p><strong>Вариант А: С PERCENTRANK + закръгляне</strong> (елегантен, но по-сложен)</p>
+<p>R скор (колона G, обърната скала):</p>
+<pre><code>=5 - INT(PERCENTRANK($D$2:$D$31, D2) * 4)</code></pre>
+<p>F скор (колона H):</p>
+<pre><code>=1 + INT(PERCENTRANK($E$2:$E$31, E2) * 4)</code></pre>
+<p>M скор (колона I):</p>
+<pre><code>=1 + INT(PERCENTRANK($F$2:$F$31, F2) * 4)</code></pre>
+<p><br></p>
+<p><strong>Вариант Б: С вложени IF</strong> (по-интуитивен)</p>
+<p>Първо, сортирайте по колона D. Клиентите на позиция 1–6 получават скор 5, 7–12 → 4, и т.н.</p>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Задача:</strong> Попълнете R, F, M скоровете в колони G–I. Използвайте който метод предпочитате.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Стъпка 3: Комбиниране в RFM скор</h2>
+<p>Комбинираме трите скора в <strong>един идентификатор</strong>:</p>
+<p><br></p>
+<p><strong>В колона J</strong> (RFM скор) напишете:</p>
+<pre><code>=G2 * 100 + H2 * 10 + I2</code></pre>
+<p>Това дава число като <strong>555</strong> (шампион), <strong>511</strong> (нов), <strong>144</strong> (загубен).</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>RFM скор</th>
+<th>Какво означава?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>555</strong></td>
+<td>Купил скоро, купува често, харчи много</td>
+</tr>
+<tr class="even">
+<td><strong>554</strong></td>
+<td>Купил скоро, купува често, харчи средно</td>
+</tr>
+<tr class="odd">
+<td><strong>511</strong></td>
+<td>Купил скоро, но само веднъж, малка сума</td>
+</tr>
+<tr class="even">
+<td><strong>155</strong></td>
+<td>Не е купувал отскоро, но бил е активен</td>
+</tr>
+<tr class="odd">
+<td><strong>111</strong></td>
+<td>Отдавна, рядко, малко — загубен</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column">
+<div class="case-study">
+<p><strong>Забележете:</strong> RFM скорът <strong>не е число за събиране</strong> — 555 не е “по-добро” от 345 в числен смисъл. Това е <strong>код</strong>, като пощенски — всяка цифра носи различна информация.</p>
+</div>
+</div></div>
+</section>
+<section class="slide level2">
+<h2>Стъпка 4: Определяне на сегменти</h2>
+<p>Вместо да работим с 125 възможни комбинации (5×5×5), групираме в <strong>5 практични сегмента</strong>:</p>
+<p><br></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb11" data-startfrom="480" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 479;"><span id="cb11-480"><a href=""></a>segments <span class="op">=</span> [</span>
+<span id="cb11-481"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Шампиони"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"4–5"</span><span class="op">,</span> <span class="dt">f</span><span class="op">:</span> <span class="st">"4–5"</span><span class="op">,</span> <span class="dt">m</span><span class="op">:</span> <span class="st">"4–5"</span><span class="op">,</span> <span class="dt">action</span><span class="op">:</span> <span class="st">"Наградете ги"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#16a34a"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">5</span>}<span class="op">,</span></span>
+<span id="cb11-482"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Лоялни"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"3–4"</span><span class="op">,</span> <span class="dt">f</span><span class="op">:</span> <span class="st">"3–5"</span><span class="op">,</span> <span class="dt">m</span><span class="op">:</span> <span class="st">"3–4"</span><span class="op">,</span> <span class="dt">action</span><span class="op">:</span> <span class="st">"Cross-sell"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">8</span>}<span class="op">,</span></span>
+<span id="cb11-483"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Нови"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"4–5"</span><span class="op">,</span> <span class="dt">f</span><span class="op">:</span> <span class="st">"1–2"</span><span class="op">,</span> <span class="dt">m</span><span class="op">:</span> <span class="st">"1–3"</span><span class="op">,</span> <span class="dt">action</span><span class="op">:</span> <span class="st">"Въведете ги"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#f59e0b"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">6</span>}<span class="op">,</span></span>
+<span id="cb11-484"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"1–2"</span><span class="op">,</span> <span class="dt">f</span><span class="op">:</span> <span class="st">"2–4"</span><span class="op">,</span> <span class="dt">m</span><span class="op">:</span> <span class="st">"2–4"</span><span class="op">,</span> <span class="dt">action</span><span class="op">:</span> <span class="st">"Win-back"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">6</span>}<span class="op">,</span></span>
+<span id="cb11-485"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Загубени"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"1–2"</span><span class="op">,</span> <span class="dt">f</span><span class="op">:</span> <span class="st">"1–2"</span><span class="op">,</span> <span class="dt">m</span><span class="op">:</span> <span class="st">"1–2"</span><span class="op">,</span> <span class="dt">action</span><span class="op">:</span> <span class="st">"Преоценете"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#6b7280"</span><span class="op">,</span> <span class="dt">count</span><span class="op">:</span> <span class="dv">5</span>}</span>
+<span id="cb11-486"><a href=""></a>]</span>
+<span id="cb11-487"><a href=""></a></span>
+<span id="cb11-488"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-489"><a href=""></a>  <span class="dt">width</span><span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb11-490"><a href=""></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb11-491"><a href=""></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb11-492"><a href=""></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb11-493"><a href=""></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, sans-serif"</span>}<span class="op">,</span></span>
+<span id="cb11-494"><a href=""></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Пет клиентски сегмента — всеки изисква различен подход"</span><span class="op">,</span></span>
+<span id="cb11-495"><a href=""></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Брой клиенти"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb11-496"><a href=""></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> segments<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">segment</span>)}<span class="op">,</span></span>
+<span id="cb11-497"><a href=""></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-498"><a href=""></a>    Plot<span class="op">.</span><span class="fu">barX</span>(segments<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"segment"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"count"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"color"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb11-499"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span>(segments<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"segment"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"count"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">count</span><span class="sc">}</span><span class="vs"> клиенти`</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb11-500"><a href=""></a>  ]</span>
+<span id="cb11-501"><a href=""></a>})</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Сегмент</th>
+<th>R скор</th>
+<th>F скор</th>
+<th>M скор</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Шампиони</strong></td>
+<td>4–5</td>
+<td>4–5</td>
+<td>4–5</td>
+<td>Наградете ги; VIP програма</td>
+</tr>
+<tr class="even">
+<td><strong>Лоялни</strong></td>
+<td>3–4</td>
+<td>3–5</td>
+<td>3–4</td>
+<td>Cross-sell; персонални препоръки</td>
+</tr>
+<tr class="odd">
+<td><strong>Нови</strong></td>
+<td>4–5</td>
+<td>1–2</td>
+<td>1–3</td>
+<td>Добре дошли оферта; серия имейли</td>
+</tr>
+<tr class="even">
+<td><strong>В риск</strong></td>
+<td>1–2</td>
+<td>2–4</td>
+<td>2–4</td>
+<td>Win-back кампания; обаждане</td>
+</tr>
+<tr class="odd">
+<td><strong>Загубени</strong></td>
+<td>1–2</td>
+<td>1–2</td>
+<td>1–2</td>
+<td>Последен шанс или преоценка</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+<h2>Сегментиране в Excel</h2>
+<p>В колона <strong>K</strong> (Сегмент) на шийт “RFM Анализ” напишете формула, която автоматично определя сегмента:</p>
+<p><br></p>
+<pre><code>=IF(AND(G2&gt;=4, H2&gt;=4, I2&gt;=4), "Шампион",
+ IF(AND(G2&gt;=3, H2&gt;=3, I2&gt;=3), "Лоялен",
+ IF(AND(G2&gt;=4, H2&lt;=2), "Нов",
+ IF(AND(G2&lt;=2, H2&gt;=2, I2&gt;=2), "В риск",
+ "Загубен"))))</code></pre>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Задача:</strong> Въведете тази формула за всеки клиент и попълнете шийт “Сегментация” — колко клиенти има във всеки сегмент и каква част от приходите генерират?</p>
+</div>
+<p><br></p>
+<div class="case-study">
+<p><strong>Подсказка:</strong> За да изчислите приходите по сегмент, използвайте <code>SUMIF(K:K, "Шампион", F:F)</code> — сумира колона F (обща стойност) за всички клиенти с етикет “Шампион”.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>RFM визуализация: R срещу F</h2>
+<div class="quarto-ojs-syntax-error">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-startfrom="544" data-syntax-error-position="2294" data-source-offset="9"><pre class="sourceCode numberSource numberLines java number-lines code-with-copy"><code class="sourceCode java" style="counter-reset: source-line 543;"><span id="cb13-544"><a href=""></a>```<span class="op">{</span>ojs<span class="op">}</span></span>
+<span id="cb13-545"><a href=""></a><span class="co">//| echo: false</span></span>
+<span id="cb13-546"><a href=""></a><span class="co">// Scatter plot: Recency vs Frequency, size = Monetary</span></span>
+<span id="cb13-547"><a href=""></a>rfmData <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb13-548"><a href=""></a>  <span class="co">// Champions (R high, F high, M high)</span></span>
+<span id="cb13-549"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Александър М."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">983</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Шампион"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">12</span><span class="op">},</span></span>
+<span id="cb13-550"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Мария И."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">789</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Шампион"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">25</span><span class="op">},</span></span>
+<span id="cb13-551"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Ана Н."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">754</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Шампион"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">18</span><span class="op">},</span></span>
+<span id="cb13-552"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Георги П."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">632</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Шампион"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">45</span><span class="op">},</span></span>
+<span id="cb13-553"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Калина Й."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">547</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Шампион"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">55</span><span class="op">},</span></span>
+<span id="cb13-554"><a href=""></a>  <span class="co">// Loyal (R mid-high, F mid-high)</span></span>
+<span id="cb13-555"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Елена Д."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">469</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">70</span><span class="op">},</span></span>
+<span id="cb13-556"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Десислава Г."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">412</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">110</span><span class="op">},</span></span>
+<span id="cb13-557"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Николай А."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">351</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">105</span><span class="op">},</span></span>
+<span id="cb13-558"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Петър С."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">339</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">95</span><span class="op">},</span></span>
+<span id="cb13-559"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Стоян К."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">304</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">130</span><span class="op">},</span></span>
+<span id="cb13-560"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Лилия П."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">279</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">120</span><span class="op">},</span></span>
+<span id="cb13-561"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Росица А."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">262</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">115</span><span class="op">},</span></span>
+<span id="cb13-562"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Габриела З."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">97</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Лоялен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">100</span><span class="op">},</span></span>
+<span id="cb13-563"><a href=""></a>  <span class="co">// New (R high, F low)</span></span>
+<span id="cb13-564"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Радослав Г."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">185</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">20</span><span class="op">},</span></span>
+<span id="cb13-565"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Христо В."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">171</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">15</span><span class="op">},</span></span>
+<span id="cb13-566"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Виктория С."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">168</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">50</span><span class="op">},</span></span>
+<span id="cb13-567"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Красимир Ц."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">102</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">40</span><span class="op">},</span></span>
+<span id="cb13-568"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Тихомир Р."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">48</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">48</span><span class="op">},</span></span>
+<span id="cb13-569"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Мартина Б."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">4</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">86</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Нов"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">55</span><span class="op">},</span></span>
+<span id="cb13-570"><a href=""></a>  <span class="co">// At risk (R low, F mid)</span></span>
+<span id="cb13-571"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Иван Т."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">153</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">280</span><span class="op">},</span></span>
+<span id="cb13-572"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Надежда М."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">148</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">310</span><span class="op">},</span></span>
+<span id="cb13-573"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Силвия Д."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">139</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">300</span><span class="op">},</span></span>
+<span id="cb13-574"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Цветелина Б."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">210</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">330</span><span class="op">},</span></span>
+<span id="cb13-575"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Борис Х."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">2</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">79</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">340</span><span class="op">},</span></span>
+<span id="cb13-576"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Яна Б."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">72</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">320</span><span class="op">},</span></span>
+<span id="cb13-577"><a href=""></a>  <span class="co">// Lost (R low, F low)</span></span>
+<span id="cb13-578"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Теодора К."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">53</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Загубен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">400</span><span class="op">},</span></span>
+<span id="cb13-579"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Димитър П."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">44</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Загубен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">430</span><span class="op">},</span></span>
+<span id="cb13-580"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Валентин С."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">31</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Загубен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">450</span><span class="op">},</span></span>
+<span id="cb13-581"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Емил Н."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">24</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Загубен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">460</span><span class="op">},</span></span>
+<span id="cb13-582"><a href=""></a>  <span class="op">{</span>name<span class="op">:</span> <span class="st">"Пламен Д."</span><span class="op">,</span> r<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> f<span class="op">:</span> <span class="dv">1</span><span class="op">,</span> m<span class="op">:</span> <span class="dv">18</span><span class="op">,</span> seg<span class="op">:</span> <span class="st">"Загубен"</span><span class="op">,</span> days<span class="op">:</span> <span class="dv">480</span><span class="op">}</span></span>
+<span id="cb13-583"><a href=""></a><span class="op">]</span></span>
+<span id="cb13-584"><a href=""></a></span>
+<span id="cb13-585"><a href=""></a>segColors <span class="op">=</span> <span class="op">{</span><span class="st">"Шампион"</span><span class="op">:</span> <span class="st">"#16a34a"</span><span class="op">,</span> <span class="st">"Лоялен"</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="st">"Нов"</span><span class="op">:</span> <span class="st">"#f59e0b"</span><span class="op">,</span> <span class="st">"В риск"</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="st">"Загубен"</span><span class="op">:</span> <span class="st">"#6b7280"</span><span class="op">}</span></span>
+<span id="cb13-586"><a href=""></a></span>
+<span id="cb13-587"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span><span class="op">({</span></span>
+<span id="cb13-588"><a href=""></a>  width<span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb13-589"><a href=""></a>  height<span class="op">:</span> <span class="dv">380</span><span class="op">,</span></span>
+<span id="cb13-590"><a href=""></a>  marginRight<span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb13-591"><a href=""></a>  style<span class="op">:</span> <span class="op">{</span>fontSize<span class="op">:</span> <span class="st">"13px"</span><span class="op">,</span> fontFamily<span class="op">:</span> <span class="st">"Inter, sans-serif"</span><span class="op">},</span></span>
+<span id="cb13-592"><a href=""></a>  title<span class="op">:</span> <span class="st">"RFM карта: скорошност (R) срещу честота (F) — размерът показва стойността (M)"</span><span class="op">,</span></span>
+<span id="cb13-593"><a href=""></a>  subtitle<span class="op">:</span> <span class="st">"Всяко кръгче е клиент. Горе вдясно = шампиони. Долу вляво = загубени."</span><span class="op">,</span></span>
+<span id="cb13-594"><a href=""></a>  x<span class="op">:</span> <span class="op">{</span>label<span class="op">:</span> <span class="st">"R скор (скорошност) →"</span><span class="op">,</span> domain<span class="op">:</span> <span class="op">[</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">5.5</span><span class="op">],</span> grid<span class="op">:</span> <span class="kw">true</span><span class="op">},</span></span>
+<span id="cb13-595"><a href=""></a>  y<span class="op">:</span> <span class="op">{</span>label<span class="op">:</span> <span class="st">"F скор (честота) →"</span><span class="op">,</span> domain<span class="op">:</span> <span class="op">[</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">5.5</span><span class="op">],</span> grid<span class="op">:</span> <span class="kw">true</span><span class="op">},</span></span>
+<span id="cb13-596"><a href=""></a>  color<span class="op">:</span> <span class="op">{</span>legend<span class="op">:</span> <span class="kw">true</span><span class="op">,</span> domain<span class="op">:</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span><span class="op">(</span>segColors<span class="op">),</span> range<span class="op">:</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">values</span><span class="op">(</span>segColors<span class="op">)},</span></span>
+<span id="cb13-597"><a href=""></a>  r<span class="op">:</span> <span class="op">{</span>range<span class="op">:</span> <span class="op">[</span><span class="dv">4</span><span class="op">,</span> <span class="dv">22</span><span class="op">]},</span></span>
+<span id="cb13-598"><a href=""></a>  marks<span class="op">:</span> <span class="op">[</span></span>
+<span id="cb13-599"><a href=""></a>    Plot<span class="op">.</span><span class="fu">dot</span><span class="op">(</span>rfmData<span class="op">,</span> <span class="op">{</span></span>
+<span id="cb13-600"><a href=""></a>      x<span class="op">:</span> d <span class="op">=&gt;</span> d<span class="op">.</span><span class="fu">r</span> <span class="op">+</span> <span class="op">(</span><span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.3</span><span class="op">,</span></span>
+<span id="cb13-601"><a href=""></a>      y<span class="op">:</span> d <span class="op">=&gt;</span> d<span class="op">.</span><span class="fu">f</span> <span class="op">+</span> <span class="op">(</span><span class="bu">Math</span><span class="op">.</span><span class="fu">random</span><span class="op">()</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.3</span><span class="op">,</span></span>
+<span id="cb13-602"><a href=""></a>      r<span class="op">:</span> <span class="st">"m"</span><span class="op">,</span> fill<span class="op">:</span> <span class="st">"seg"</span><span class="op">,</span> fillOpacity<span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span> stroke<span class="op">:</span> <span class="st">"seg"</span><span class="op">,</span> strokeWidth<span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> tip<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb13-603"><a href=""></a>      channels<span class="op">:</span> <span class="op">{</span>Клиент<span class="op">:</span> <span class="st">"name"</span><span class="op">,</span> <span class="st">"Стойност (лв.)"</span><span class="op">:</span> <span class="st">"m"</span><span class="op">,</span> <span class="st">"Дни от покупка"</span><span class="op">:</span> <span class="st">"days"</span><span class="op">}</span></span>
+<span id="cb13-604"><a href=""></a>    <span class="op">}),</span></span>
+<span id="cb13-605"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span><span class="op">([{</span>x<span class="op">:</span> <span class="dv">5</span><span class="op">,</span> y<span class="op">:</span> <span class="fl">5.3</span><span class="op">}],</span> <span class="op">{</span> x<span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> y<span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> text<span class="op">:</span> d <span class="op">=&gt;</span> <span class="st">"★ Шампиони"</span><span class="op">,</span> fill<span class="op">:</span> <span class="st">"#16a34a"</span><span class="op">,</span> fontSize<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> fontWeight<span class="op">:</span> <span class="st">"bold"</span> <span class="op">}),</span></span>
+<span id="cb13-606"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span><span class="op">([{</span>x<span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> y<span class="op">:</span> <span class="fl">1.2</span><span class="op">}],</span> <span class="op">{</span> x<span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> y<span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> text<span class="op">:</span> d <span class="op">=&gt;</span> <span class="st">"Загубени ↓"</span><span class="op">,</span> fill<span class="op">:</span> <span class="st">"#6b7280"</span><span class="op">,</span> fontSize<span class="op">:</span> <span class="dv">12</span> <span class="op">}),</span></span>
+<span id="cb13-607"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span><span class="op">([{</span>x<span class="op">:</span> <span class="fl">4.5</span><span class="op">,</span> y<span class="op">:</span> <span class="fl">1.2</span><span class="op">}],</span> <span class="op">{</span> x<span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> y<span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> text<span class="op">:</span> d <span class="op">=&gt;</span> <span class="st">"Нови →"</span><span class="op">,</span> fill<span class="op">:</span> <span class="st">"#f59e0b"</span><span class="op">,</span> fontSize<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> fontWeight<span class="op">:</span> <span class="st">"bold"</span> <span class="op">}),</span></span>
+<span id="cb13-608"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span><span class="op">([{</span>x<span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> y<span class="op">:</span> <span class="fl">3.3</span><span class="op">}],</span> <span class="op">{</span> x<span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> y<span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> text<span class="op">:</span> d <span class="op">=&gt;</span> <span class="st">"← В риск"</span><span class="op">,</span> fill<span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> fontSize<span class="op">:</span> <span class="dv">12</span><span class="op">,</span> fontWeight<span class="op">:</span> <span class="st">"bold"</span> <span class="op">}),</span></span>
+<span id="cb13-609"><a href=""></a>  <span class="op">]</span></span>
+<span id="cb13-610"><a href=""></a><span class="op">})</span></span>
+<span id="cb13-611"><a href=""></a>```</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>OJS Syntax Error (line 585, column 23)Unexpected token</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Тази “карта” е мощен визуален инструмент. Веднага виждаме четирите ъгъла: шампионите (горе вдясно), новите (долу вдясно), в риск (горе вляво) и загубените (долу вляво).</p>
+</section>
+<section class="slide level2">
+<h2>Какво правим с всеки сегмент?</h2>
+<p>Силата на RFM не е в числата, а в <strong>действията</strong>, които следват от тях:</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Шампиони</strong> (R↑ F↑ M↑)</p>
+<ul>
+<li>Персонална благодарност</li>
+<li>Ранен достъп до нови книги</li>
+<li>VIP програма за лоялност</li>
+<li><strong>Цена на загубата: ВИСОКА</strong></li>
+</ul>
+<p><br></p>
+<p><strong>Нови</strong> (R↑ F↓ M↓)</p>
+<ul>
+<li>“Добре дошли” имейл серия</li>
+<li>Препоръки на база първата покупка</li>
+<li>Отстъпка за втора поръчка</li>
+<li><strong>Потенциал: ВИСОК</strong></li>
+</ul>
+</div><div class="column">
+<p><strong>Лоялни</strong> (R≈ F≈ M≈)</p>
+<ul>
+<li>Cross-sell: “Клиенти като вас купуват и…”</li>
+<li>Персонализирани препоръки</li>
+<li>Програма с точки</li>
+<li><strong>Стабилна база</strong></li>
+</ul>
+<p><br></p>
+<p><strong>В риск</strong> (R↓ F≈ M≈)</p>
+<ul>
+<li>Win-back имейл: “Липсвате ни!”</li>
+<li>Специална отстъпка (10–15%)</li>
+<li>Телефонно обаждане (за топ клиенти)</li>
+<li><strong>Спешност: ВИСОКА</strong></li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="case-study">
+<p><strong>Загубени</strong> (R↓ F↓ M↓): Изпратете <strong>едно</strong> последно съобщение. Ако няма реакция — освободете ресурсите и ги насочете към нови и лоялни клиенти.</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+<h2>Упражнение: RFM анализ на КнигоМания</h2>
+<div class="highlight-box">
+<p><strong>Задача (20 мин.):</strong></p>
+<ol type="1">
+<li><p><strong>Попълнете R, F, M скорове</strong> в шийт “RFM Анализ” (колони G–I), използвайки PERCENTRANK формулата от слайдовете</p></li>
+<li><p><strong>Изчислете RFM скора</strong> в колона J: <code>=G2*100 + H2*10 + I2</code></p></li>
+<li><p><strong>Определете сегмента</strong> в колона K с IF формулата от слайдовете</p></li>
+<li><p><strong>Попълнете шийт “Сегментация”:</strong></p>
+<ul>
+<li>Колко клиенти има във всеки сегмент? (<code>=COUNTIF(...)</code>)</li>
+<li>Каква е общата стойност по сегмент? (<code>=SUMIF(...)</code>)</li>
+<li>Какъв % от приходите генерира всеки сегмент?</li>
+</ul></li>
+<li><p><strong>Отговорете:</strong> Кои 3 клиента “в риск” бихте се опитали да върнете първо и защо?</p></li>
+</ol>
+</div>
+</section>
+<section class="slide level2">
+<h2>Customer Lifetime Value (CLV): стъпка напред</h2>
+<p>RFM ни показва <strong>миналото</strong>. Но мениджърите питат: <strong>“Колко ще ни донесе този клиент в бъдеще?”</strong></p>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>CLV (Customer Lifetime Value)</strong> = очакваният <strong>общ приход</strong> от един клиент през целия му “живот” като наш клиент.</p>
+</div>
+<p><br></p>
+<p><strong>Опростена формула:</strong></p>
+<pre><code>CLV = Средна стойност на покупка × Брой покупки годишно × Среден "живот" (години)</code></pre>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Пример за КнигоМания:</strong></p>
+<ul>
+<li>Средна покупка: <strong>~35 лв.</strong></li>
+<li>Покупки годишно: <strong>~6</strong></li>
+<li>Среден “живот”: <strong>~3 години</strong></li>
+</ul>
+<p><strong>CLV = 35 × 6 × 3 = 630 лв.</strong></p>
+</div><div class="column">
+<p><strong>Защо е полезно?</strong></p>
+<ul>
+<li>Знаем колко можем да <strong>платим за привличане</strong> на нов клиент</li>
+<li>Ако CLV = 630 лв., маркетинг разход от 50 лв./клиент е разумен</li>
+<li>Ако CLV = 630 лв. за шампион, но само 80 лв. за загубен — ясно е <strong>къде да инвестираме</strong></li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="case-study">
+<p>CLV е <strong>приблизителна</strong> мярка, но е по-добра от нищо. Като прогнозите от Седмица 6 — не е перфектна, но е <strong>по-добра от гадаене</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>CLV по сегменти</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb15" data-startfrom="746" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 745;"><span id="cb15-746"><a href=""></a>clvData <span class="op">=</span> [</span>
+<span id="cb15-747"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Шампиони"</span><span class="op">,</span> <span class="dt">avgPurchase</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span> <span class="dt">purchasesYear</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">lifeYears</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb15-748"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Лоялни"</span><span class="op">,</span> <span class="dt">avgPurchase</span><span class="op">:</span> <span class="dv">35</span><span class="op">,</span> <span class="dt">purchasesYear</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">lifeYears</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb15-749"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Нови"</span><span class="op">,</span> <span class="dt">avgPurchase</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">purchasesYear</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">lifeYears</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb15-750"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"В риск"</span><span class="op">,</span> <span class="dt">avgPurchase</span><span class="op">:</span> <span class="dv">33</span><span class="op">,</span> <span class="dt">purchasesYear</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">lifeYears</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb15-751"><a href=""></a>  {<span class="dt">segment</span><span class="op">:</span> <span class="st">"Загубени"</span><span class="op">,</span> <span class="dt">avgPurchase</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">purchasesYear</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">lifeYears</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb15-752"><a href=""></a>]</span>
+<span id="cb15-753"><a href=""></a>clvComputed <span class="op">=</span> clvData<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">clv</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">avgPurchase</span> <span class="op">*</span> d<span class="op">.</span><span class="at">purchasesYear</span> <span class="op">*</span> d<span class="op">.</span><span class="at">lifeYears</span>)}))</span>
+<span id="cb15-754"><a href=""></a></span>
+<span id="cb15-755"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb15-756"><a href=""></a>  <span class="dt">width</span><span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb15-757"><a href=""></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span></span>
+<span id="cb15-758"><a href=""></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb15-759"><a href=""></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb15-760"><a href=""></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, sans-serif"</span>}<span class="op">,</span></span>
+<span id="cb15-761"><a href=""></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Очакваната стойност на шампион е 22× повече от загубен клиент"</span><span class="op">,</span></span>
+<span id="cb15-762"><a href=""></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"CLV = Средна покупка × Покупки/год. × Среден живот (години)"</span><span class="op">,</span></span>
+<span id="cb15-763"><a href=""></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"CLV (лв.)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb15-764"><a href=""></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> clvComputed<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">segment</span>)}<span class="op">,</span></span>
+<span id="cb15-765"><a href=""></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
+<span id="cb15-766"><a href=""></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb15-767"><a href=""></a>    Plot<span class="op">.</span><span class="fu">barX</span>(clvComputed<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"segment"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"clv"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> ({<span class="st">"Шампиони"</span><span class="op">:</span> <span class="st">"#16a34a"</span><span class="op">,</span> <span class="st">"Лоялни"</span><span class="op">:</span> <span class="st">"#2563eb"</span><span class="op">,</span> <span class="st">"Нови"</span><span class="op">:</span> <span class="st">"#f59e0b"</span><span class="op">,</span> <span class="st">"В риск"</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="st">"Загубени"</span><span class="op">:</span> <span class="st">"#6b7280"</span>})[d<span class="op">.</span><span class="at">segment</span>]})<span class="op">,</span></span>
+<span id="cb15-768"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span>(clvComputed<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"segment"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"clv"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">clv</span><span class="sc">}</span><span class="vs"> лв.`</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">14</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb15-769"><a href=""></a>  ]</span>
+<span id="cb15-770"><a href=""></a>})</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>Шампионите носят <strong>~1 680 лв.</strong> за “живота” си, докато загубените — едва <strong>~19 лв.</strong> Разликата е огромна. Това означава, че <strong>задържането на един шампион</strong> е по-ценно от <strong>привличането на десетки нови клиенти</strong>.</p>
+<div class="highlight-box">
+<p><strong>Практически извод:</strong> Ако можете да вложите 100 лв. в маркетинг — по-добре го изхарчете за <strong>win-back кампания</strong> за клиент “в риск” с висок CLV, отколкото за реклама към напълно нови хора.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Кога RFM не е достатъчен?</h2>
+<p>RFM е мощен, но има <strong>ограничения</strong>:</p>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ограничение</th>
+<th>Какво означава?</th>
+<th>Какво можем да направим?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Не вижда продуктовите предпочитания</strong></td>
+<td>Знаем, че Мария купува често, но не какво</td>
+<td>Добавяме категория към анализа</td>
+</tr>
+<tr class="even">
+<td><strong>Третира всички покупки еднакво</strong></td>
+<td>Покупка на учебник за 55 лв. ≠ покупка на детска книга за 8 лв.</td>
+<td>Използваме средна стойност на поръчка</td>
+</tr>
+<tr class="odd">
+<td><strong>Не отчита сезонност</strong></td>
+<td>Клиент, който купува учебници само в септември, изглежда “загубен” през март</td>
+<td>Разглеждаме годишни цикли</td>
+</tr>
+<tr class="even">
+<td><strong>Границите са субективни</strong></td>
+<td>Защо 5 скора, а не 3 или 10?</td>
+<td>Тестваме различни граници</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="case-study">
+<p>RFM е <strong>отправна точка</strong>, не крайна дестинация. За по-сложни анализи се използват статистически модели (кластериране, предсказващи модели), но RFM е отличен първи инструмент, който <strong>всеки може да приложи в Excel</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Какво научихме днес?</h2>
+<p>Днес видяхме:</p>
+<ul>
+<li><strong>Не всички клиенти са еднакви</strong> — малка група генерира голяма част от приходите (Парето)</li>
+<li><strong>RFM анализът</strong> дава пълна картина чрез три измерения: скорошност, честота, стойност</li>
+<li><strong>Сегментирането</strong> ни позволява да предприемем <strong>различни действия</strong> за различни групи</li>
+<li><strong>CLV</strong> (Customer Lifetime Value) показва <strong>дългосрочната стойност</strong> на всеки клиент</li>
+<li>Данните за клиентите не са просто “статистика” — те са <strong>основа за стратегия</strong></li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p>Ключов извод: Най-скъпата грешка не е да загубите нов клиент, а да <strong>не забележите</strong>, когато шампион тихо спира да купува.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Какво ви очаква следващия път?</h2>
+<p><strong>Седмица 8: Риск и несигурност в бизнеса</strong> (лекция)</p>
+<ul>
+<li>Какво се случва, когато прогнозата е <strong>грешна</strong>?</li>
+<li>Как да вземаме решения при <strong>неопределеност</strong>?</li>
+<li><strong>Анализ на сценарии</strong> и чувствителност</li>
+<li><strong>Дървета на решенията</strong> — структуриране на сложни избори</li>
+</ul>
+</section>
+<section class="slide level2 scrollable">
+<h2>Упражнение за вкъщи</h2>
+<div class="highlight-box">
+<p><strong>Мини-проект:</strong></p>
+<ol type="1">
+<li>Завършете RFM анализа на КнигоМания — всички 30 клиенти трябва да имат <strong>скорове и сегмент</strong></li>
+<li>Попълнете шийт <strong>“Сегментация”</strong> с обобщени данни по сегмент</li>
+<li>Създайте <strong>Pivot Table</strong> в шийт “Транзакции”: Rows = Категория, Columns = Сегмент (от RFM), Values = Sum of Стойност</li>
+<li>Напишете <strong>кратък доклад</strong> (5–7 изречения), в който:
+<ul>
+<li>Опишете разпределението на клиентите по сегменти</li>
+<li>Посочете кои <strong>3 клиенти “в риск”</strong> бихте таргетирали първо</li>
+<li>Предложете <strong>конкретна маркетинг кампания</strong> за един от сегментите (кой, какво, защо)</li>
+<li>Изчислете <strong>CLV</strong> за шампионите и лоялните — колко пъти е по-висок CLV на шампионите?</li>
+</ul></li>
+</ol>
+<p><br></p>
+<p><strong>Критерии:</strong></p>
+<ul>
+<li>RFM скоровете са <strong>коректно изчислени</strong> (PERCENTRANK или еквивалент)</li>
+<li>Сегментите са <strong>обосновани</strong> и съответстват на RFM логиката</li>
+<li>Докладът съдържа <strong>конкретни числа и препоръки</strong>, а не общи фрази</li>
+</ul>
+</div>
+</section>
+<section class="slide level2 center">
+<h2>Въпроси?</h2>
+<p><br></p>
+<div class="stat-big">
+<p>?</p>
+</div>
+<p><br></p>
+<p>доц. д-р Виктор Аврамов | vavramov@nbu.bg</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Вземане на бизнес решения на базата на данни | НБУ</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QgPSBpbXBvcnQoXCJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvbnBtL0BvYnNlcnZhYmxlaHEvcGxvdEAwLjYvK2VzbVwiKVxucGxvdFdpZHRoID0gTWF0aC5taW4od2lkdGgsIDExMDApXG5cbi8vIEN1c3RvbWVyIHJldmVudWUgZGF0YSAoc29ydGVkIGRlc2NlbmRpbmcpXG5jdXN0b21lclJldmVudWUgPSBbXG4gIHtuYW1lOiBcItCQ0LvQtdC60YHQsNC90LTRitGAINCcLlwiLCByZXZlbnVlOiA5ODMsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCc0LDRgNC40Y8g0JguXCIsIHJldmVudWU6IDc4OSwgcGN0OiAwfSxcbiAge25hbWU6IFwi0JDQvdCwINCdLlwiLCByZXZlbnVlOiA3NTQsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCT0LXQvtGA0LPQuCDQny5cIiwgcmV2ZW51ZTogNjMyLCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQmtCw0LvQuNC90LAg0JkuXCIsIHJldmVudWU6IDU0NywgcGN0OiAwfSxcbiAge25hbWU6IFwi0JXQu9C10L3QsCDQlC5cIiwgcmV2ZW51ZTogNDY5LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQlNC10YHQuNGB0LvQsNCy0LAg0JMuXCIsIHJldmVudWU6IDQxMiwgcGN0OiAwfSxcbiAge25hbWU6IFwi0J3QuNC60L7Qu9Cw0Lkg0JAuXCIsIHJldmVudWU6IDM1MSwgcGN0OiAwfSxcbiAge25hbWU6IFwi0J/QtdGC0YrRgCDQoS5cIiwgcmV2ZW51ZTogMzM5LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQodGC0L7Rj9C9INCaLlwiLCByZXZlbnVlOiAzMDQsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCb0LjQu9C40Y8g0J8uXCIsIHJldmVudWU6IDI3OSwgcGN0OiAwfSxcbiAge25hbWU6IFwi0KDQvtGB0LjRhtCwINCQLlwiLCByZXZlbnVlOiAyNjIsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCm0LLQtdGC0LXQu9C40L3QsCDQkS5cIiwgcmV2ZW51ZTogMjEwLCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQoNCw0LTQvtGB0LvQsNCyINCTLlwiLCByZXZlbnVlOiAxODUsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCl0YDQuNGB0YLQviDQki5cIiwgcmV2ZW51ZTogMTcxLCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQktC40LrRgtC+0YDQuNGPINChLlwiLCByZXZlbnVlOiAxNjgsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCY0LLQsNC9INCiLlwiLCByZXZlbnVlOiAxNTMsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCd0LDQtNC10LbQtNCwINCcLlwiLCByZXZlbnVlOiAxNDgsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCh0LjQu9Cy0LjRjyDQlC5cIiwgcmV2ZW51ZTogMTM5LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQmtGA0LDRgdC40LzQuNGAINCmLlwiLCByZXZlbnVlOiAxMDIsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCT0LDQsdGA0LjQtdC70LAg0JcuXCIsIHJldmVudWU6IDk3LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQnNCw0YDRgtC40L3QsCDQkS5cIiwgcmV2ZW51ZTogODYsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCR0L7RgNC40YEg0KUuXCIsIHJldmVudWU6IDc5LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQr9C90LAg0JEuXCIsIHJldmVudWU6IDcyLCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQotC10L7QtNC+0YDQsCDQmi5cIiwgcmV2ZW51ZTogNTMsIHBjdDogMH0sXG4gIHtuYW1lOiBcItCi0LjRhdC+0LzQuNGAINCgLlwiLCByZXZlbnVlOiA0OCwgcGN0OiAwfSxcbiAge25hbWU6IFwi0JTQuNC80LjRgtGK0YAg0J8uXCIsIHJldmVudWU6IDQ0LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQktCw0LvQtdC90YLQuNC9INChLlwiLCByZXZlbnVlOiAzMSwgcGN0OiAwfSxcbiAge25hbWU6IFwi0JXQvNC40Lsg0J0uXCIsIHJldmVudWU6IDI0LCBwY3Q6IDB9LFxuICB7bmFtZTogXCLQn9C70LDQvNC10L0g0JQuXCIsIHJldmVudWU6IDE4LCBwY3Q6IDB9XG5dXG5cbnRvdGFsUmV2ID0gY3VzdG9tZXJSZXZlbnVlLnJlZHVjZSgocywgZCkgPT4gcyArIGQucmV2ZW51ZSwgMClcbmN1bVN1bSA9IHtsZXQgcyA9IDA7IHJldHVybiBjdXN0b21lclJldmVudWUubWFwKChkLCBpKSA9PiB7cyArPSBkLnJldmVudWU7IHJldHVybiB7Li4uZCwgY3VtUGN0OiBzIC8gdG90YWxSZXYgKiAxMDAsIHJhbms6IGkgKyAxfX0pO31cblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IHBsb3RXaWR0aCxcbiAgaGVpZ2h0OiAzNjAsXG4gIG1hcmdpbkJvdHRvbTogODAsXG4gIG1hcmdpblJpZ2h0OiA1MCxcbiAgc3R5bGU6IHtmb250U2l6ZTogXCIxMnB4XCIsIGZvbnRGYW1pbHk6IFwiSW50ZXIsIHNhbnMtc2VyaWZcIn0sXG4gIHRpdGxlOiBcIjYg0LrQu9C40LXQvdGC0LggKDIwJSkg0LPQtdC90LXRgNC40YDQsNGCINC90LDQtCA1NSUg0L7RgiDQv9GA0LjRhdC+0LTQuNGC0LUg0L3QsCDQmtC90LjQs9C+0JzQsNC90LjRj1wiLFxuICBzdWJ0aXRsZTogXCLQodGC0YrQu9Cx0L7QstC1ID0g0L/RgNC40YXQvtC0INC90LAg0LrQu9C40LXQvdGCICjQu9CyLiksINC70LjQvdC40Y8gPSDQutGD0LzRg9C70LDRgtC40LLQtdC9ICUg0L7RgiDQvtCx0YnQuNGPINC/0YDQuNGF0L7QtFwiLFxuICB4OiB7bGFiZWw6IG51bGwsIHRpY2tSb3RhdGU6IC01NSwgZG9tYWluOiBjdW1TdW0ubWFwKGQgPT4gZC5uYW1lKX0sXG4gIHk6IHtsYWJlbDogXCLQn9GA0LjRhdC+0LQgKNC70LIuKVwiLCBncmlkOiB0cnVlfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LnJlY3RZKFt7eDE6IC0wLjUsIHgyOiA1LjUsIHkxOiAwLCB5MjogMTA1MH1dLCB7XG4gICAgICB4MTogZCA9PiBcItCQ0LvQtdC60YHQsNC90LTRitGAINCcLlwiLCB4MjogZCA9PiBcItCY0LLQsNC9INCiLlwiLCB5MTogMCwgeTI6IDEwNTAsIGZpbGw6IFwiI2RiZWFmZVwiLCBmaWxsT3BhY2l0eTogMC40XG4gICAgfSksXG4gICAgUGxvdC5iYXJZKGN1bVN1bSwge3g6IFwibmFtZVwiLCB5OiBcInJldmVudWVcIiwgZmlsbDogZCA9PiBkLnJhbmsgPD0gNiA/IFwiIzI1NjNlYlwiIDogXCIjOTRhM2I4XCIsIHRpcDogdHJ1ZX0pLFxuICAgIFBsb3QudGV4dChbe3g6IFwi0JXQu9C10L3QsCDQlC5cIiwgeTogOTgwfV0sIHsgeDogXCJ4XCIsIHk6IFwieVwiLCB0ZXh0OiBkID0+IFwi4oaQINCi0L7QvyAyMCUgKNGI0LDQvNC/0LjQvtC90LgpXCIsIGZpbGw6IFwiIzI1NjNlYlwiLCBmb250U2l6ZTogMTIsIGZvbnRXZWlnaHQ6IFwiYm9sZFwiIH0pLFxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic2VnbWVudHMgPSBbXG4gIHtzZWdtZW50OiBcItCo0LDQvNC/0LjQvtC90LhcIiwgcjogXCI04oCTNVwiLCBmOiBcIjTigJM1XCIsIG06IFwiNOKAkzVcIiwgYWN0aW9uOiBcItCd0LDQs9GA0LDQtNC10YLQtSDQs9C4XCIsIGNvbG9yOiBcIiMxNmEzNGFcIiwgY291bnQ6IDV9LFxuICB7c2VnbWVudDogXCLQm9C+0Y/Qu9C90LhcIiwgcjogXCIz4oCTNFwiLCBmOiBcIjPigJM1XCIsIG06IFwiM+KAkzRcIiwgYWN0aW9uOiBcIkNyb3NzLXNlbGxcIiwgY29sb3I6IFwiIzI1NjNlYlwiLCBjb3VudDogOH0sXG4gIHtzZWdtZW50OiBcItCd0L7QstC4XCIsIHI6IFwiNOKAkzVcIiwgZjogXCIx4oCTMlwiLCBtOiBcIjHigJMzXCIsIGFjdGlvbjogXCLQktGK0LLQtdC00LXRgtC1INCz0LhcIiwgY29sb3I6IFwiI2Y1OWUwYlwiLCBjb3VudDogNn0sXG4gIHtzZWdtZW50OiBcItCSINGA0LjRgdC6XCIsIHI6IFwiMeKAkzJcIiwgZjogXCIy4oCTNFwiLCBtOiBcIjLigJM0XCIsIGFjdGlvbjogXCJXaW4tYmFja1wiLCBjb2xvcjogXCIjZGMyNjI2XCIsIGNvdW50OiA2fSxcbiAge3NlZ21lbnQ6IFwi0JfQsNCz0YPQsdC10L3QuFwiLCByOiBcIjHigJMyXCIsIGY6IFwiMeKAkzJcIiwgbTogXCIx4oCTMlwiLCBhY3Rpb246IFwi0J/RgNC10L7RhtC10L3QtdGC0LVcIiwgY29sb3I6IFwiIzZiNzI4MFwiLCBjb3VudDogNX1cbl1cblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IHBsb3RXaWR0aCxcbiAgaGVpZ2h0OiAzMDAsXG4gIG1hcmdpbkxlZnQ6IDEwMCxcbiAgbWFyZ2luUmlnaHQ6IDYwLFxuICBzdHlsZToge2ZvbnRTaXplOiBcIjE0cHhcIiwgZm9udEZhbWlseTogXCJJbnRlciwgc2Fucy1zZXJpZlwifSxcbiAgdGl0bGU6IFwi0J/QtdGCINC60LvQuNC10L3RgtGB0LrQuCDRgdC10LPQvNC10L3RgtCwIOKAlCDQstGB0LXQutC4INC40LfQuNGB0LrQstCwINGA0LDQt9C70LjRh9C10L0g0L/QvtC00YXQvtC0XCIsXG4gIHg6IHtsYWJlbDogXCLQkdGA0L7QuSDQutC70LjQtdC90YLQuFwiLCBncmlkOiB0cnVlfSxcbiAgeToge2xhYmVsOiBudWxsLCBkb21haW46IHNlZ21lbnRzLm1hcChkID0+IGQuc2VnbWVudCl9LFxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWChzZWdtZW50cywge3k6IFwic2VnbWVudFwiLCB4OiBcImNvdW50XCIsIGZpbGw6IFwiY29sb3JcIiwgdGlwOiB0cnVlfSksXG4gICAgUGxvdC50ZXh0KHNlZ21lbnRzLCB7eTogXCJzZWdtZW50XCIsIHg6IFwiY291bnRcIiwgdGV4dDogZCA9PiBgJHtkLmNvdW50fSDQutC70LjQtdC90YLQuGAsIGR4OiAyNSwgZm9udFNpemU6IDEzLCBmb250V2VpZ2h0OiBcImJvbGRcIn0pLFxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY2x2RGF0YSA9IFtcbiAge3NlZ21lbnQ6IFwi0KjQsNC80L/QuNC+0L3QuFwiLCBhdmdQdXJjaGFzZTogNDIsIHB1cmNoYXNlc1llYXI6IDEwLCBsaWZlWWVhcnM6IDQsIGNsdjogMH0sXG4gIHtzZWdtZW50OiBcItCb0L7Rj9C70L3QuFwiLCBhdmdQdXJjaGFzZTogMzUsIHB1cmNoYXNlc1llYXI6IDYsIGxpZmVZZWFyczogMywgY2x2OiAwfSxcbiAge3NlZ21lbnQ6IFwi0J3QvtCy0LhcIiwgYXZnUHVyY2hhc2U6IDMwLCBwdXJjaGFzZXNZZWFyOiAzLCBsaWZlWWVhcnM6IDIuNSwgY2x2OiAwfSxcbiAge3NlZ21lbnQ6IFwi0JIg0YDQuNGB0LpcIiwgYXZnUHVyY2hhc2U6IDMzLCBwdXJjaGFzZXNZZWFyOiA0LCBsaWZlWWVhcnM6IDEsIGNsdjogMH0sXG4gIHtzZWdtZW50OiBcItCX0LDQs9GD0LHQtdC90LhcIiwgYXZnUHVyY2hhc2U6IDI1LCBwdXJjaGFzZXNZZWFyOiAxLjUsIGxpZmVZZWFyczogMC41LCBjbHY6IDB9LFxuXVxuY2x2Q29tcHV0ZWQgPSBjbHZEYXRhLm1hcChkID0+ICh7Li4uZCwgY2x2OiBNYXRoLnJvdW5kKGQuYXZnUHVyY2hhc2UgKiBkLnB1cmNoYXNlc1llYXIgKiBkLmxpZmVZZWFycyl9KSlcblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IHBsb3RXaWR0aCxcbiAgaGVpZ2h0OiAyODAsXG4gIG1hcmdpbkxlZnQ6IDEwMCxcbiAgbWFyZ2luUmlnaHQ6IDgwLFxuICBzdHlsZToge2ZvbnRTaXplOiBcIjE0cHhcIiwgZm9udEZhbWlseTogXCJJbnRlciwgc2Fucy1zZXJpZlwifSxcbiAgdGl0bGU6IFwi0J7Rh9Cw0LrQstCw0L3QsNGC0LAg0YHRgtC+0LnQvdC+0YHRgiDQvdCwINGI0LDQvNC/0LjQvtC9INC1IDIyw5cg0L/QvtCy0LXRh9C1INC+0YIg0LfQsNCz0YPQsdC10L0g0LrQu9C40LXQvdGCXCIsXG4gIHN1YnRpdGxlOiBcIkNMViA9INCh0YDQtdC00L3QsCDQv9C+0LrRg9C/0LrQsCDDlyDQn9C+0LrRg9C/0LrQuC/Qs9C+0LQuIMOXINCh0YDQtdC00LXQvSDQttC40LLQvtGCICjQs9C+0LTQuNC90LgpXCIsXG4gIHg6IHtsYWJlbDogXCJDTFYgKNC70LIuKVwiLCBncmlkOiB0cnVlfSxcbiAgeToge2xhYmVsOiBudWxsLCBkb21haW46IGNsdkNvbXB1dGVkLm1hcChkID0+IGQuc2VnbWVudCl9LFxuICBjb2xvcjoge2xlZ2VuZDogZmFsc2V9LFxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWChjbHZDb21wdXRlZCwge3k6IFwic2VnbWVudFwiLCB4OiBcImNsdlwiLCBmaWxsOiBkID0+ICh7XCLQqNCw0LzQv9C40L7QvdC4XCI6IFwiIzE2YTM0YVwiLCBcItCb0L7Rj9C70L3QuFwiOiBcIiMyNTYzZWJcIiwgXCLQndC+0LLQuFwiOiBcIiNmNTllMGJcIiwgXCLQkiDRgNC40YHQulwiOiBcIiNkYzI2MjZcIiwgXCLQl9Cw0LPRg9Cx0LXQvdC4XCI6IFwiIzZiNzI4MFwifSlbZC5zZWdtZW50XX0pLFxuICAgIFBsb3QudGV4dChjbHZDb21wdXRlZCwge3k6IFwic2VnbWVudFwiLCB4OiBcImNsdlwiLCB0ZXh0OiBkID0+IGAke2QuY2x2fSDQu9CyLmAsIGR4OiAzMCwgZm9udFNpemU6IDE0LCBmb250V2VpZ2h0OiBcImJvbGRcIn0pLFxuICBdXG59KVxuIn1dfQ==
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../..";
+    window._ojs.paths.runtimeToRoot = "../../../..";
+    window._ojs.paths.docToRoot = "..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Копирано!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Копирано!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

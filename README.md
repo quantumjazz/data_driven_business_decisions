@@ -40,6 +40,7 @@ Published on GitHub Pages: [quantumjazz.github.io/data_driven_business_decisions
 | 03 | Building Models That Matter *(Module 2 — Week 4)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-03/) |
 | 04 | Forecasting Without Fear *(Module 3 — Week 6)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-04/) |
 | 05 | Customer Behaviour Analysis *(Module 3 — Week 7)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-05/) |
+| 06 | Optimization for Everyone *(Module 4 — Week 9)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-06/) |
 
 ---
 
@@ -90,6 +91,9 @@ data_driven_business_decisions/
 ├── lecture-05/          # Source files for Lecture 5
 │   ├── index.qmd        # Quarto slide source
 │   └── knigomania-data.xlsx
+├── lecture-06/          # Source files for Lecture 6
+│   ├── index.qmd        # Quarto slide source
+│   └── bakery-data.xlsx
 ├── docs/                # Rendered HTML (served via GitHub Pages)
 │   ├── lecture-01/
 │   │   └── index.html
@@ -99,7 +103,9 @@ data_driven_business_decisions/
 │   │   └── index.html
 │   ├── lecture-04/
 │   │   └── index.html
-│   └── lecture-05/
+│   ├── lecture-05/
+│   │   └── index.html
+│   └── lecture-06/
 │       └── index.html
 ├── _quarto.yml          # Quarto project configuration
 ├── styles.scss          # Custom slide styles

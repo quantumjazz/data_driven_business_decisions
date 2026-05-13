@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="bg"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="доц. д-р Виктор Аврамов">
+  <meta name="dcterms.date" content="2026-05-13">
+  <title>Комуникиране на данни</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-e2c65b9f1c2b33b9a3e737a7701d7c5b.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="index_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="index_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">Комуникиране на данни</h1>
+  <p class="subtitle">Модул 5: Бизнес анализът в действие</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+доц. д-р Виктор Аврамов 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-05-13</p>
+</section>
+<section class="slide level2 center">
+<h2>Докъде стигнахме?</h2>
+<div class="highlight-box">
+<p><strong>Модул 5: Бизнес анализът в действие</strong> (Седмици 12–14)</p>
+<p>Седмица 12: <strong>Комуникиране на данни</strong> ← Днес</p>
+<p>Седмица 13: Етика и поверителност</p>
+<p>Седмица 14: Вашият аналитичен инструментариум</p>
+</div>
+<p><br></p>
+<p>В Модули 1–4 научихме <strong>как</strong> да анализираме данни. В Модул 5 задаваме различния въпрос: <strong>как анализът да доведе до решение, без да обещаваме повече, отколкото знаем?</strong></p>
+</section>
+<section class="slide level2">
+<h2>Какво направихме досега?</h2>
+<pre><code>Модул 1     Модул 2       Модул 3                Модул 4.                          Модул 5
+┌──────┐  ┌──────────┐  ┌──────────┐  ┌─────────────────────────────┐  ┌────────────────────────────────┐
+│ Защо │  │ Описание │  │ Прогноза │  │ Седм. 9:  Оптимизация       │  │ Седм. 12: Вариация и       │
+│данни?│→ │    на    │→ │    и     │→ │ Седм. 10: A/B тестове       │→ │           несигурност  ← Днес  │
+│      │  │  данни   │  │   риск   │  │ Седм. 11: Теория на игрите  │  │ Седм. 13: Етика на данните     │
+│ С.1–2│  │  С. 3–5  │  │  С. 6–8  │  │                             │  │ Седм. 14: Инструментариум      │
+└──────┘  └──────────┘  └──────────┘  └─────────────────────────────┘  └────────────────────────────────┘</code></pre>
+<p><br></p>
+<p>Досега се занимавахме с числата и моделите. <strong>Прогнозите</strong> (Седм. 6) са несигурни по определение. <strong>A/B тестове</strong> (Седм. 10) са инструмент <strong>именно за</strong> оценка на вариацияливост. Но когато стигнем до <strong>представянето</strong>, несигурността често изчезва.</p>
+<p>Тази седмица: <strong>как да я задържим.</strong></p>
+</section>
+<section class="slide level2">
+<h2>След тази лекция трябва да можете</h2>
+<ul>
+<li>Да разпознаете кога <strong>процентът крие интервал</strong> — и да попитате „какъв”</li>
+<li>Да идентифицирате четирите <strong>когнитивни склонности</strong> в собственото си четене на числа</li>
+<li>Да превеждате технически проценти в <strong>естествени честоти</strong> (евро, заплати, клиенти)</li>
+<li>Да правите разлика между <strong>препоръка</strong>, <strong>очакване</strong> и <strong>допускане</strong> в доклад</li>
+<li>Да комуникирате <strong>честно</strong>, когато картината не е ясна — без да изглеждате слаби</li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p>Това <strong>не</strong> е лекция за статистически тестове или формули. Това е лекция за <strong>рамкирането на несигурността</strong> — как да представим едно число така, че слушателят да разбере какво <strong>знаем</strong> и какво <strong>предполагаме</strong>.</p>
+</div>
+</section>
+<section class="slide level2 center">
+<h2>Хипотетичен сценарий</h2>
+<div class="case-study">
+<p>Млад аналитик в куриерска компания подготвя брийфинг за съвета на директорите. Открива, че за <strong>Q4 нетна печалба пада с 42%</strong>. Поставя го като заглавие на доклада си. CEO реагира веднага: замразяване на наеми, рязане на CAPEX, бонусите за Q1 — отменени.</p>
+<p>Q1 2025 идва. Показателите се възстановяват. Q4 спадът е бил <strong>комбинация от планирани разходи, изплащане на задължения и един отписан клиент</strong>.</p>
+<p>Аналитикът губи доверие. Фирмата губи приходи от ненужно забавени проекти.</p>
+</div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Къде е грешката:</strong> тримесечните данни, изолирани, колкото и да са шокиращи, са <strong>една реализация на шумен процес</strong>. Решение базирано само на това и <strong>без доверителен интервал</strong> е една лотария.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Какво всъщност имаме за Спиди?</h2>
+<div class="two-col">
+<div class="column">
+<p><strong>Това, което виждаме:</strong></p>
+<ul>
+<li>2 годишни точки: 2023 и 2024</li>
+<li>2 Q4 точки: Q4 2023 и Q4 2024</li>
+<li>5 шийта показатели</li>
+</ul>
+<p><strong>Това прави общо:</strong> 1 годишно сравнение, 1 Q4 сравнение.</p>
+</div><div class="column">
+<p><strong>Това, което </strong>не** виждаме:**</p>
+<ul>
+<li>Q1, Q2, Q3 за никоя година</li>
+<li>Данни за 2020, 2021, 2022</li>
+<li>Месечна динамика през годината</li>
+<li>Сравнителни данни за конкуренти</li>
+<li>Сектора като цяло</li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p>Всяка „промяна”, за която говорим, е <strong>разлика между две точки</strong>. Нямаме нищо, което да ни каже <strong>колко шум</strong> има при тази скала. Това е първата несигурност, която никога не се показва.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Илюзията на единичното наблюдение</h2>
+<p>Когато кажем „за Q4 имаме нетна печалба −42%“, го представяме като <strong>изолиран факт</strong>. Но Q4 е 3 месеца, в които:</p>
+<p><br></p>
+<ul>
+<li><strong>Едно решение за провизия</strong> може да измести резултата с 5–15 п.п.</li>
+<li><strong>Едно отписване на вземане</strong> от голям клиент — още 5–10 п.п.</li>
+<li><strong>Преместване на бонус</strong> от декември за януари — 3–7 п.п.</li>
+<li><strong>Един голям клиент</strong>, който плати по-рано в Q4 2023 и по-късно в Q4 2024 — целият спад може да изчезне в Q1</li>
+</ul>
+<p><br></p>
+<div class="case-study">
+<p><strong>Тестът:</strong> Ако кажем „печалбата падна с <strong>между 25% и 50%</strong> в Q4, в зависимост от това как класифицираме няколко ефекта в края на годината” — какво губим? Точност, която не сме имали. Какво печелим? Публика с реалистични очаквания.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Четирите капана при четенето на числа</h2>
+<p>Tversky и Kahneman (отново):</p>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 32%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Изместване</th>
+<th>Описание</th>
+<th>В контекста на Спиди</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Закотвяне</strong> (anchoring)</td>
+<td>Първото число доминира всичко след него</td>
+<td>Започваме с „+12.9% приходи” → целият доклад звучи позитивно</td>
+</tr>
+<tr class="even">
+<td><strong>Наличност</strong> (availability)</td>
+<td>Запомненото изглежда вероятно</td>
+<td>„Току-що имаше съкращения в Econt” → всички очакват срив и в Спиди</td>
+</tr>
+<tr class="odd">
+<td><strong>Представителност</strong></td>
+<td>Изчисляваме вероятност на база на лесна асоциация</td>
+<td>„−42% прилича на кризата от 2009” — и взимаме грешни мерки</td>
+</tr>
+<tr class="even">
+<td><strong>Свръхувереност</strong></td>
+<td>Сигурни сме повече, отколкото трябва</td>
+<td>„Сигурен съм на 90%, че е временно” — а сме на 60%</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Кое е най-важното:</strong> Грешката не е в данните. Грешката е <strong>в нас</strong>. И няма имунитет — нито за CEO, нито за анализатора. Единственото средство е <strong>дисциплина</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Закотвяне на практика — двата прочита, преоценени</h2>
+<div class="two-col">
+<div class="column">
+<p><strong>Закотвяне към +12.9%:</strong></p>
+<ul>
+<li>Растеж, мрежа, инвестиции</li>
+<li>Q4 спадът е „нормално” за инвестиционна година</li>
+<li>Маржовете ще се възстановят</li>
+<li><strong>Препоръка:</strong> продължаваме плана</li>
+</ul>
+<p>Какво губим? Q4 е реално тревожен сигнал, който не разгледахме внимателно.</p>
+</div><div class="column">
+<p><strong>Закотвяне към −42%:</strong></p>
+<ul>
+<li>Маржове, шок, разходи</li>
+<li>Q4 е „прозорец към 2025”</li>
+<li>Бизнес моделът се поставя под въпрос</li>
+<li><strong>Препоръка:</strong> замразяваме CAPEX</li>
+</ul>
+<p>Какво губим? Годишният ръст +12.9% показва, че пазарната позиция е силна — а ние я подкопаваме.</p>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Тест за закотвяне:</strong> Ако започнете доклада си с <strong>обратното</strong> число, ще ли стигнете до <strong>обратното</strong> заключение? Ако да — изводът ви не е извод, а инерция от заглавието.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Калибрация — Alpert и Raiffa, версия за нас</h2>
+<p>В класически експеримент, мениджъри са накарани да дадат <strong>„90% сигурни”</strong> интервали за бизнес показатели (продажби на конкуренти, цена на акция след година, и т.н.).</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Какво очакваме:</strong></p>
+<p>Ако са дали 100 такива интервала, реалният отговор трябва да попадне в около <strong>90 от тях</strong>.</p>
+<p><strong>Какво виждаме реално:</strong></p>
+<p>Реалният отговор попада само в <strong>40–60</strong> от интервалите. Мениджърите са <strong>систематично</strong> свръхуверени — интервалите им са <strong>прекалено тесни</strong>.</p>
+</div><div class="column">
+<p><strong>Бизнес последици за Спиди:</strong></p>
+<ul>
+<li>„Q1 2025 ще се възстанови” — но колко % реално сме сигурни?</li>
+<li>„Инвестиционният цикъл ще се изплати до 2026” — каква е честотата, с която такива прогнози се сбъдват в срок?</li>
+<li>„Маржовете ще се възстановят” — кои <strong>конкретни</strong> условия трябва да се случат?</li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Правилото на калибрирания анализатор:</strong> Винаги давайте <strong>по-широк</strong> интервал, отколкото ви се иска. И винаги добавяйте „при условие че…“.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Естествени честоти — Gigerenzer за бизнеса</h2>
+<p>Gerd Gigerenzer (Max Planck Institute) показва, че <strong>проценти и вероятности</strong> объркват хората — дори лекари, дори банкери. Но <strong>естествени честоти</strong> (брой неща от брой неща) <strong>не</strong> объркват никого.</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>НЕ:</strong></p>
+<blockquote>
+<p>„EBITDA маржът се сви със <strong>180 базисни точки</strong>.”</p>
+</blockquote>
+<blockquote>
+<p>„Маржът на нетна печалба падна с <strong>1.79 п.п.</strong>”</p>
+</blockquote>
+<blockquote>
+<p>„Свиване в рентабилността с <strong>близо 11%</strong> на годишна база.”</p>
+</blockquote>
+</div><div class="column">
+<p><strong>ДА:</strong></p>
+<blockquote>
+<p>„От всеки <strong>100 евро</strong> приход, печалбата падна от <strong>8.60 евро</strong> на <strong>6.80 евро</strong> — почти <strong>2 евро</strong> по-малко.”</p>
+</blockquote>
+<blockquote>
+<p>„При оборот от <strong>519 млн евро</strong>, това са <strong>9.3 млн евро</strong> по-малко в банковата сметка спрямо 2023 — приблизително <strong>80 средни годишни заплати</strong> на наши служители.”</p>
+</blockquote>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Правилото на превода:</strong> За аудитория, която мисли в <strong>пари</strong> — говорете в пари. За аудитория, която мисли в <strong>хора</strong> — говорете в хора. Процентите винаги се нуждаят от <strong>превод</strong> в нещо, което слушателят вижда всеки ден.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Представени повторения (Hullman et al., 2018)</h2>
+<p>Преди да действате по едно число, направете следния <strong>мисловен експеримент</strong>:</p>
+<p><br></p>
+<div class="case-study">
+<p><em>„Ако 2024 г. се случеше <strong>100 пъти</strong> — същата стратегия, същият пазар, същата мрежа — само различен <strong>късмет</strong> (един клиент платил по-рано, едно отписване в януари вместо декември, едно наемане отложено с месец) — колко често бихме видели Q4 нетна печалба около <strong>−42%</strong>?“</em></p>
+</div>
+<p><br></p>
+<p>Не можем да изчислим. Но можем да помислим:</p>
+<ul>
+<li>Ако „<strong>почти никога</strong>”: −42% е сигнал за <strong>структурна</strong> промяна.</li>
+<li>Ако „<strong>често</strong> — половината от случаите”: −42% е <strong>нормална</strong> Q4 вариация.</li>
+<li>Ако „<strong>не знаем</strong>”: не бива да правим <strong>уверени</strong> препоръки.</li>
+</ul>
+<div class="highlight-box">
+<p><strong>Представените повторения</strong> е безплатен мисловен експеримент. Не дава отговори, но <strong>изостря какъв въпрос всъщност задаваме</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Едно число или 100 възможни числа?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="305" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 304;"><span id="cb2-305"><a href=""></a>Plot <span class="op">=</span> <span class="im">import</span>(<span class="st">"https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"</span>)</span>
+<span id="cb2-306"><a href=""></a>plotWidth <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1100</span>)</span>
+<span id="cb2-307"><a href=""></a></span>
+<span id="cb2-308"><a href=""></a><span class="co">// Илюстративна визуализация: представени 100 повторения на Q4 2024 при различни сценарии</span></span>
+<span id="cb2-309"><a href=""></a><span class="co">// Това не е реална статистика — а мисловен експеримент</span></span>
+<span id="cb2-310"><a href=""></a>random100 <span class="op">=</span> {</span>
+<span id="cb2-311"><a href=""></a>  <span class="kw">const</span> rng <span class="op">=</span> d3 <span class="kw">=&gt;</span> {</span>
+<span id="cb2-312"><a href=""></a>    <span class="kw">let</span> seed <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb2-313"><a href=""></a>    <span class="cf">return</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-314"><a href=""></a>      seed <span class="op">=</span> (seed <span class="op">*</span> <span class="dv">9301</span> <span class="op">+</span> <span class="dv">49297</span>) <span class="op">%</span> <span class="dv">233280</span></span>
+<span id="cb2-315"><a href=""></a>      <span class="cf">return</span> seed <span class="op">/</span> <span class="dv">233280</span></span>
+<span id="cb2-316"><a href=""></a>    }</span>
+<span id="cb2-317"><a href=""></a>  }</span>
+<span id="cb2-318"><a href=""></a>  <span class="kw">const</span> r <span class="op">=</span> <span class="fu">rng</span>()</span>
+<span id="cb2-319"><a href=""></a>  <span class="kw">const</span> points <span class="op">=</span> []</span>
+<span id="cb2-320"><a href=""></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-321"><a href=""></a>    <span class="co">// Симулирани „представени повторения" около реалния −42%, с разсейване</span></span>
+<span id="cb2-322"><a href=""></a>    <span class="kw">const</span> u1 <span class="op">=</span> <span class="fu">r</span>()<span class="op">,</span> u2 <span class="op">=</span> <span class="fu">r</span>()</span>
+<span id="cb2-323"><a href=""></a>    <span class="kw">const</span> z <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(u1)) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> u2)</span>
+<span id="cb2-324"><a href=""></a>    points<span class="op">.</span><span class="fu">push</span>({<span class="dt">i</span><span class="op">:</span> i<span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">42</span> <span class="op">+</span> z <span class="op">*</span> <span class="dv">12</span>})</span>
+<span id="cb2-325"><a href=""></a>  }</span>
+<span id="cb2-326"><a href=""></a>  <span class="cf">return</span> points</span>
+<span id="cb2-327"><a href=""></a>}</span>
+<span id="cb2-328"><a href=""></a></span>
+<span id="cb2-329"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-330"><a href=""></a>  <span class="dt">width</span><span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb2-331"><a href=""></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span></span>
+<span id="cb2-332"><a href=""></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb2-333"><a href=""></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb2-334"><a href=""></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb2-335"><a href=""></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, sans-serif"</span>}<span class="op">,</span></span>
+<span id="cb2-336"><a href=""></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Ако Q4 2024 се случеше 100 пъти — какво щяхме да видим?"</span><span class="op">,</span></span>
+<span id="cb2-337"><a href=""></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Илюстрация: −42% е една реализация на шумен процес, не „истината“"</span><span class="op">,</span></span>
+<span id="cb2-338"><a href=""></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Q4 нетна печалба, % промяна спрямо Q4 2023 →"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">80</span><span class="op">,</span> <span class="dv">0</span>]}<span class="op">,</span></span>
+<span id="cb2-339"><a href=""></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb2-340"><a href=""></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-341"><a href=""></a>    Plot<span class="op">.</span><span class="fu">dot</span>(random100<span class="op">,</span> {</span>
+<span id="cb2-342"><a href=""></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span> </span>
+<span id="cb2-343"><a href=""></a>      <span class="dt">y</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>()<span class="op">,</span></span>
+<span id="cb2-344"><a href=""></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb2-345"><a href=""></a>      <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">value</span> <span class="op">-</span> (<span class="op">-</span><span class="dv">42</span>)) <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"#dc2626"</span> <span class="op">:</span> <span class="st">"#94a3b8"</span><span class="op">,</span></span>
+<span id="cb2-346"><a href=""></a>      <span class="dt">stroke</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">value</span> <span class="op">-</span> (<span class="op">-</span><span class="dv">42</span>)) <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"#7f1d1d"</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb2-347"><a href=""></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb2-348"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb2-349"><a href=""></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="op">-</span><span class="dv">42</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,2"</span>})<span class="op">,</span></span>
+<span id="cb2-350"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="op">-</span><span class="dv">42</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Реално измерено: −42%"</span>}]<span class="op">,</span> {</span>
+<span id="cb2-351"><a href=""></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">1.05</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span></span>
+<span id="cb2-352"><a href=""></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#7f1d1d"</span><span class="op">,</span></span>
+<span id="cb2-353"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb2-354"><a href=""></a>  ]</span>
+<span id="cb2-355"><a href=""></a>})</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="highlight-box">
+<p>Червеният кръг е числото, което видяхме. Сивите кръгове са <strong>сценарии</strong>, които <strong>също</strong> можеха да се случат при различен късмет. CEO не реагира на <strong>един кръг</strong> — реагира на <strong>облака</strong>.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>От −42% към интервал — разлагане на спада за Q4</h2>
+<p>Едно число е сума от <strong>много</strong> компоненти, всеки със своя несигурност. За Спиди Q4 нетна печалба −42%:</p>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 33%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Компонент</th>
+<th>Възможен принос</th>
+<th>Каква е вероятността?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Амортизация от 61.8 млн евро CAPEX</td>
+<td>−10 до −15 п.п.</td>
+<td><strong>Висока</strong> — счетоводно</td>
+</tr>
+<tr class="even">
+<td>Планирано наемане (Q4 персонал +28%)</td>
+<td>−8 до −12 п.п.</td>
+<td><strong>Висока</strong> — HR данни</td>
+</tr>
+<tr class="odd">
+<td>Събития в края на годината (провизии, бонуси)</td>
+<td>−5 до −15 п.п.</td>
+<td><strong>Средна</strong> — зависи от политики</td>
+</tr>
+<tr class="even">
+<td>Базово влошаванена резултатите</td>
+<td>−2 до −10 п.п.</td>
+<td><strong>Ниска</strong> — точно тук е най-интересното</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Какво казваме:</strong> −42% <strong>не</strong> е едно число. То е <strong>сума от четири несигурни числа</strong>. Препоръката към CEO трябва да отразява това: „CAPEX ефект — <strong>сигурен</strong>; персонал — <strong>планиран</strong>; еднократни събития — <strong>вероятни</strong>; влошаване на бизнес ситуацията— <strong>несигурно</strong> — точно тук трябва да се фокусираме”</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Илюзия за контрол (Langer, 1975)</h2>
+<p>Когато CEO казва <strong>„ще оправим маржовете до Q2”</strong>, той претендира за <strong>контрол</strong> върху резултата. Психологът Ellen Langer показва, че хората систематично <strong>надценяват</strong> контрола си.</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>Какво е извън контрола на Спиди:</strong></p>
+<ul>
+<li>Заплати в куриерския сектор (пазарни сили)</li>
+<li>Забавяне на глобалната икономика (Q4 +7.3% vs +12.5% годишно)</li>
+<li>Цена на гориво и логистика</li>
+<li>Регулаторни промени в ЕС</li>
+<li>Конкурентно ценообразуване (Econt, Български пощи)</li>
+</ul>
+</div><div class="column">
+<p><strong>Какво </strong>е** под контрол:**</p>
+<ul>
+<li>Преглед на договори с подизпълнители</li>
+<li>Темпо на разширяване на мрежата</li>
+<li>Структура на бонусите</li>
+<li>Микс между вътрешен и международен сегмент</li>
+<li>CAPEX план за 2025</li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Добрият доклад</strong> <strong>отделя</strong> трите неща: <strong>лостове, които имаме</strong> / <strong>лостове, които нямаме</strong> / <strong>неща, с които трябва да живеем</strong>. „Препоръчвам X” без това разделение е илюзия за контрол.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Когато докладът ви стигне до медиите</h2>
+<p>Реалност: финансовата преса ще напише <strong>едно от двете</strong>:</p>
+<p><br></p>
+<div class="two-col">
+<div class="column">
+<p><strong>„Зелено” заглавие:</strong></p>
+<blockquote>
+<p>„Спиди постига рекорден ръст на приходи през 2024 — компанията инвестира в мрежата”</p>
+</blockquote>
+<p>Подзаглавие: акцент върху +12.9%, 235 нови пакетомата, разширяване.</p>
+<p>Q4 спад? Споменат в края, ако изобщо.</p>
+</div><div class="column">
+<p><strong>„Червено” заглавие:</strong></p>
+<blockquote>
+<p>„Печалбата на Спиди се срина наполовина в Q4 2024 — натиск върху маржовете”</p>
+</blockquote>
+<p>Подзаглавие: акцент върху −42%, разходи за персонал +19%, инфлация в сектора.</p>
+<p>CAPEX инвестицията? Спомената в края.</p>
+</div></div>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>И двете</strong> заглавия са технически верни. <strong>И двете</strong> губят интервалите. Ако сте <strong>източникът</strong> на данните, отговорността е ваша — докладът ви трябва да съдържа <strong>поне една</strong> мярка за несигурност, който медията <strong>не може</strong> да изхвърли.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>3 начина да комуникирате вариация (без математика)</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 22%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Начин</th>
+<th>Кога</th>
+<th>В случая със Спиди</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Думи</strong></td>
+<td>Когато имате интуиция, но не и числа</td>
+<td>„Q4 <strong>предполагаемо</strong> отразява еднократни ефекти и <strong>е възможно</strong> да не се повтори”</td>
+</tr>
+<tr class="even">
+<td><strong>Сравнения</strong></td>
+<td>Когато имате исторически референции</td>
+<td>„Q4 печалба −42% — но при подобен CAPEX цикъл в 2021 имаше Q4 −28%” <em>(хипотетично)</em></td>
+</tr>
+<tr class="odd">
+<td><strong>Сценарии</strong></td>
+<td>Когато правите прогноза</td>
+<td>„2025 базов: −5%; оптимистичен: +5%; песимистичен: −25%”</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="case-study">
+<p><strong>Не сте задължени да изберете един.</strong> По-силен доклад използва <strong>и трите</strong>: думи в заглавието, сравнения в KPI, сценарии в препоръките.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Думи → числа → последици — стълбата на превода</h2>
+<p><br></p>
+<pre><code>┌──────────────────────────────────────────────────────────────────────┐
+│ ❌ Лошо:    „Значителен спад в маржовете през 2024 г." "             |            
+├──────────────────────────────────────────────────────────────────────┤
+│ ⚠ По-добре: „Маржовете падат с 1.8 п.п."                             │
+├──────────────────────────────────────────────────────────────────────┤
+│ ✓ Още по-добре:                                                      │
+│   „От 100 евро приход печалбата спада с 1.80 евро."                  │
+├──────────────────────────────────────────────────────────────────────┤
+│ ✓✓ Най-добре:                                                        │
+│   „1.80 евро по-малко печалба на всеки 100 евро оборот.              │
+│    При нашите 519 млн евро оборот — около 9.3 млн евро по-малко      │
+│    спрямо 2023, приблизително 80 средни годишни заплати."            │
+└──────────────────────────────────────────────────────────────────────┘</code></pre>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Правилото:</strong> Всяко число има <strong>два съседа</strong> — <strong>думата</strong>, която го резюмира, и <strong>последицата</strong>, която го превежда в нещо осезаемо. Винаги говорете с двамата.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Честно противоречие, версия 1.0; 2.0</h2>
+<p><strong>Оригиналното правило:</strong> покажете и двете страни на един проблем. &lt;– 1.0</p>
+<p><strong>Правилото с несигурност:</strong> покажете двете страни, <strong>И</strong> колко сме сигурни във всяка, <strong>И</strong> какво <strong>не</strong> знаем. &lt;– 2.0.</p>
+<p><br></p>
+<div class="case-study">
+<p><strong>Спиди — нечестна версия:</strong></p>
+<blockquote>
+<p>„Q4 печалба −42% — структурен проблем, изисква незабавно действие.”</p>
+</blockquote>
+<p><strong>Спиди — честна версия:</strong></p>
+<blockquote>
+<p>„Спиди расте по-бързо от пазара (приходи +12.9%). Нетната печалба пада с 10.5% — почти 2 евро по-малко на всеки 100 евро оборот. Q4 показва −42%, но Q4 е чувствителен към планирани наемания и плащания в края на годината; <strong>вероятният ‘истински’ интервал е между −25% и −50%</strong>. Това е <strong>първата година на свиване</strong> след 3 години ръст — все още <strong>не знаем</strong> дали е структурно или инвестиционно обусловено. <strong>Препоръчвам:</strong> ревизия до 31.03; решение на бордовия съвет до 30.06; промяна на стратегията <strong>само ако</strong> Q1 2025 потвърди тренда.”</p>
+</blockquote>
+</div>
+</section>
+<section class="slide level2">
+<h2>Рамки за обяснение на парадокса — с условия за наблюдение</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Рамка</th>
+<th>Какво означава</th>
+<th>Колко сме сигурни?</th>
+<th>Какво ще я <strong>потвърди / опровергае</strong>?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Инвестиционен цикъл</strong></td>
+<td>Растеж сега, печалба после</td>
+<td><strong>Среден интервал</strong></td>
+<td>CAPEX намалява в 2025; маржовете възстановяват се за 4–6 тримесечия</td>
+</tr>
+<tr class="even">
+<td><strong>2. Промяна в микса</strong></td>
+<td>Продаваме повече „по-евтини” услуги</td>
+<td><strong>Нисък интервал</strong></td>
+<td>Международен сегмент продължава да расте по-бавно от вътрешния</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Структурна слабост</strong></td>
+<td>Цените падат / разходите растат необратимо</td>
+<td><strong>Нисък интервал</strong></td>
+<td>Q1 2025 показва −25% или повече при намален CAPEX</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Никога</strong> не казвайте „това е рамка X”. <strong>Винаги</strong> казвайте „това е рамка X, <strong>ако наблюдаваме Y</strong> до Z”. Различни рамки изискват различни решения — и <strong>погрешната</strong> диагноза струва повече от <strong>никаква</strong> диагноза.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Двата прочита — преоценени през несигурността</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="547" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 546;"><span id="cb4-547"><a href=""></a>contrastData <span class="op">=</span> [</span>
+<span id="cb4-548"><a href=""></a>  {<span class="dt">kind</span><span class="op">:</span> <span class="st">"Приходи 2024"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="fl">12.9</span><span class="op">,</span> <span class="dt">low</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">high</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#16a34a"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Приходи: +12.9% (вероятно +10% до +16%)"</span>}<span class="op">,</span></span>
+<span id="cb4-549"><a href=""></a>  {<span class="dt">kind</span><span class="op">:</span> <span class="st">"Нетна печалба 2024"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="fl">10.5</span><span class="op">,</span> <span class="dt">low</span><span class="op">:</span> <span class="op">-</span><span class="dv">18</span><span class="op">,</span> <span class="dt">high</span><span class="op">:</span> <span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#dc2626"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Нетна печалба: −10.5% (вероятно −18% до −3%)"</span>}<span class="op">,</span></span>
+<span id="cb4-550"><a href=""></a>]</span>
+<span id="cb4-551"><a href=""></a></span>
+<span id="cb4-552"><a href=""></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-553"><a href=""></a>  <span class="dt">width</span><span class="op">:</span> plotWidth<span class="op">,</span></span>
+<span id="cb4-554"><a href=""></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span></span>
+<span id="cb4-555"><a href=""></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb4-556"><a href=""></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb4-557"><a href=""></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"14px"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, sans-serif"</span>}<span class="op">,</span></span>
+<span id="cb4-558"><a href=""></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Същият контраст — но с интервал, не с точка"</span><span class="op">,</span></span>
+<span id="cb4-559"><a href=""></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Илюстративни 'разумни' интервали, отчитайки шум в данните"</span><span class="op">,</span></span>
+<span id="cb4-560"><a href=""></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Промяна спрямо 2023 (%) →"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">25</span><span class="op">,</span> <span class="dv">20</span>]}<span class="op">,</span></span>
+<span id="cb4-561"><a href=""></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> contrastData<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">kind</span>)}<span class="op">,</span></span>
+<span id="cb4-562"><a href=""></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-563"><a href=""></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#1a1a2e"</span>})<span class="op">,</span></span>
+<span id="cb4-564"><a href=""></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>(contrastData<span class="op">,</span> {</span>
+<span id="cb4-565"><a href=""></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"kind"</span><span class="op">,</span> <span class="dt">x1</span><span class="op">:</span> <span class="st">"low"</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"high"</span><span class="op">,</span></span>
+<span id="cb4-566"><a href=""></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"fill"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">14</span><span class="op">,</span> <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.25</span><span class="op">,</span></span>
+<span id="cb4-567"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb4-568"><a href=""></a>    Plot<span class="op">.</span><span class="fu">dot</span>(contrastData<span class="op">,</span> {</span>
+<span id="cb4-569"><a href=""></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"kind"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">7</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"fill"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb4-570"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb4-571"><a href=""></a>    Plot<span class="op">.</span><span class="fu">text</span>(contrastData<span class="op">,</span> {</span>
+<span id="cb4-572"><a href=""></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"kind"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span></span>
+<span id="cb4-573"><a href=""></a>      <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">22</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span><span class="op">,</span></span>
+<span id="cb4-574"><a href=""></a>      <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">value</span> <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"#15803d"</span> <span class="op">:</span> <span class="st">"#b91c1c"</span><span class="op">,</span></span>
+<span id="cb4-575"><a href=""></a>    })<span class="op">,</span></span>
+<span id="cb4-576"><a href=""></a>  ]</span>
+<span id="cb4-577"><a href=""></a>})</span></code></pre></div><button title="Копирай в клипборда" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="highlight-box">
+<p><strong>Дизайнът включва следните принципи:</strong> Стълбовете дават <strong>точност</strong>, която не имаме. <strong>Точка + интервал</strong> дава <strong>честност</strong>, която имаме. Когато контрастът е важен — направете го с интервали.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Мост към етиката (Седмица 13)</h2>
+<div class="case-study">
+<p><strong>Скриването на несигурността</strong> изглежда като увереност. Но е форма на <strong>заблуда</strong>.</p>
+<p><strong>Показването на несигурността</strong> изглежда като слабост. Но е <strong>честно</strong>.</p>
+<p>И двете са <strong>етични избори</strong>.</p>
+</div>
+<p><br></p>
+<p>Кога е етично да премълчите несигурност?</p>
+<ul>
+<li>Никога? Дори когато това плаши инвеститори?</li>
+<li>Само за публични документи?</li>
+<li>Само ако може да доведе до <strong>по-лошо</strong> решение?</li>
+<li>Само ако несигурността е „пренебрежимо малка”?</li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p>Тази седмица: <strong>как</strong> да комуникираме вариация. Следващата: <strong>кога имаме право</strong> да я премълчим — и при какви условия. Етиката не е „опаковка” над комуникацията — тя е <strong>избор</strong>, който правим всеки път.</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+<h2>Упражнение в час: Uncertainty доклад</h2>
+<div class="highlight-box">
+<p><strong>Задача (20 мин.):</strong></p>
+<p>Конвертирайте Спиди 2024 в <strong>„несигурностно-съзнателен” доклад</strong> за CEO:</p>
+<ol type="1">
+<li><p><strong>Заглавие-извод</strong> трябва да съдържа поне един <strong>маркер за несигурност</strong>: „около”, „приблизително”, „ако условията се запазят”, „вероятно”.</p></li>
+<li><p><strong>3 KPI елемента</strong> — поне <strong>една</strong> показва <strong>интервал</strong> или <strong>два сценария</strong> (например: „Q1 2025: вероятно −15% до −25% спрямо Q1 2024”).</p></li>
+<li><p><strong>Контекст</strong> (2–3 изречения) + изричен списък <strong>„Какво не знаем”</strong> с поне <strong>2</strong> точки.</p></li>
+<li><p><strong>3 препоръки</strong>, всяка с <strong>дата за преоценка</strong>: „Преглед на бюджета за персонал; <strong>първо решение до 31.03</strong>; <strong>преоценка до 30.06</strong>”.</p></li>
+<li><p><strong>„Какво би променило мнението ми”</strong> — 2 показателя, които <strong>ако се променят</strong>, ще обърнете препоръката.</p></li>
+</ol>
+<p><strong>Презентация:</strong> 30-секундно представяне към „CEO” (състудент), който трябва да ви прекъсне с поне <strong>един</strong> въпрос за несигурност.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>5 чести грешки в комуникирането на несигурност</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Грешка</th>
+<th>Как звучи</th>
+<th>Как да я поправим</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Илюзорна прецизност</strong></td>
+<td>„EBITDA марж: 16.302%”</td>
+<td>„EBITDA марж: около <strong>16%</strong>, с историческа вариацияливост ±1%”</td>
+</tr>
+<tr class="even">
+<td><strong>2. Прогноза с един сценарий</strong></td>
+<td>„2025 ще е −5%”</td>
+<td>„2025: базов −5%, диапазон <strong>от −20% до +5%</strong>”</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Скрита несигурност</strong></td>
+<td>Уговорки в бележка под линия</td>
+<td>Уговорките <strong>в тялото</strong> на доклада</td>
+</tr>
+<tr class="even">
+<td><strong>4. Закотвено мислене</strong></td>
+<td>Започваме с най-шумовото число</td>
+<td>Започвайте с <strong>най-стабилния</strong> тренд</td>
+</tr>
+<tr class="odd">
+<td><strong>5. Липсваща променлива</strong></td>
+<td>„Препоръчвам X”</td>
+<td>„Препоръчвам X; <strong>ще променя ако Y</strong> до Z”</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Тестът:</strong> Ако махнете уговорките, посланието същото ли е? Ако <strong>да</strong> — те трябва да са във <strong>видимата</strong> част на доклада, не във footer-а.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Какво научихме днес?</h2>
+<ul>
+<li>Едно число е <strong>една реализация</strong> на шумен процес — не е „истината”</li>
+<li><strong>Когнитивните отклонения</strong> водят и читателите, <strong>и нас</strong>, към лъжлива увереност</li>
+<li><strong>Естествените честоти</strong> (евро, заплати, клиенти) са универсалният език за нестатистици</li>
+<li><strong>Представените повторения</strong> е безплатен мисловен експеримент</li>
+<li><strong>Илюзията за контрол</strong> превръща препоръките в обещания, които не можем да изпълним</li>
+<li>Честната несигурност <strong>не е слабост</strong> — тя е <strong>занаят</strong></li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p><strong>Извод:</strong> Анализ <strong>без</strong> несигурност изглежда силен, но е <strong>чуплив</strong>. Анализ <strong>с честна</strong> несигурност изглежда уязвим, но е <strong>здрав</strong>. Кого бихте искали да представите на бордовия съвет, <strong>който ще оценява вас</strong> за качеството на препоръката?</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>Какво ни очаква следващия път?</h2>
+<p><strong>Седмица 13: Етика на данните и анализите</strong> (лекция)</p>
+<ul>
+<li>Кога <strong>подчертаването</strong> става <strong>изкривяване</strong>?</li>
+<li>Кога <strong>скриването на несигурност</strong> е етично, и кога — не?</li>
+<li><strong>Privacy</strong> и какво дължим на данните на клиентите</li>
+<li><strong>Bias</strong> в моделите — кой пада в сита, кой не?</li>
+<li><strong>Прозрачност</strong>: какво обяснение дължим на засегнатите?</li>
+<li><strong>Право на „не”</strong> — кога да откажете да направите анализ?</li>
+</ul>
+<p><br></p>
+<div class="highlight-box">
+<p>Тази седмица: <strong>как</strong> да комуникираме вариацияливост. Следващата: <strong>дали имаме право</strong> да я премълчим — и при какви условия.</p>
+</div>
+</section>
+<section class="slide level2 scrollable">
+<h2>Упражнение за вкъщи</h2>
+<div class="highlight-box">
+<p><strong>Мини-проект (за следващата седмица):</strong></p>
+<ol type="1">
+<li><p><strong>Изберете</strong> анализ от предишните седмици — клиентският анализ на Книгомания (Седм. 7), оптимизацията на Датската пекарна (Седм. 9) или прогнозата на Royal Pet Food (Седм. 6).</p></li>
+<li><p><strong>Намерете оригиналния си отчет</strong>.</p></li>
+<li><p><strong>Превърнете го в uncertainty доклад</strong> за CEO:</p>
+<ul>
+<li><strong>Заглавие-извод</strong> с маркер за несигурност (с число и глагол)</li>
+<li><strong>3 KPI плочки</strong> — поне <strong>една</strong> с интервал или два сценария</li>
+<li><strong>1 графика</strong> на тренд или контраст</li>
+<li><strong>Контекст</strong> (2–3 изр.) + изричен списък <strong>„Какво не знаем”</strong> (2+ точки)</li>
+<li><strong>3 препоръки</strong> с <strong>дата за преоценка</strong> и <strong>„какво би ме променило”</strong></li>
+</ul></li>
+<li><p><strong>Запазете като PDF</strong> на 1 страница. Изпратете до <strong>23:59 в неделя</strong>.</p></li>
+</ol>
+</div>
+</section>
+<section class="slide level2 center">
+<h2>Въпроси?</h2>
+<p><br></p>
+<div class="stat-big">
+<p>?</p>
+</div>
+<p><br></p>
+<p>доц. д-р Виктор Аврамов | vavramov@nbu.bg</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Вземане на бизнес решения на базата на данни | НБУ</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QgPSBpbXBvcnQoXCJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvbnBtL0BvYnNlcnZhYmxlaHEvcGxvdEAwLjYvK2VzbVwiKVxucGxvdFdpZHRoID0gTWF0aC5taW4od2lkdGgsIDExMDApXG5cbi8vINCY0LvRjtGB0YLRgNCw0YLQuNCy0L3QsCDQstC40LfRg9Cw0LvQuNC30LDRhtC40Y86INC/0YDQtdC00YHRgtCw0LLQtdC90LggMTAwINC/0L7QstGC0L7RgNC10L3QuNGPINC90LAgUTQgMjAyNCDQv9GA0Lgg0YDQsNC30LvQuNGH0L3QuCDRgdGG0LXQvdCw0YDQuNC4XG4vLyDQotC+0LLQsCDQvdC1INC1INGA0LXQsNC70L3QsCDRgdGC0LDRgtC40YHRgtC40LrQsCDigJQg0LAg0LzQuNGB0LvQvtCy0LXQvSDQtdC60YHQv9C10YDQuNC80LXQvdGCXG5yYW5kb20xMDAgPSB7XG4gIGNvbnN0IHJuZyA9IGQzID0+IHtcbiAgICBsZXQgc2VlZCA9IDQyXG4gICAgcmV0dXJuICgpID0+IHtcbiAgICAgIHNlZWQgPSAoc2VlZCAqIDkzMDEgKyA0OTI5NykgJSAyMzMyODBcbiAgICAgIHJldHVybiBzZWVkIC8gMjMzMjgwXG4gICAgfVxuICB9XG4gIGNvbnN0IHIgPSBybmcoKVxuICBjb25zdCBwb2ludHMgPSBbXVxuICBmb3IgKGxldCBpID0gMDsgaSA8IDEwMDsgaSsrKSB7XG4gICAgLy8g0KHQuNC80YPQu9C40YDQsNC90Lgg4oCe0L/RgNC10LTRgdGC0LDQstC10L3QuCDQv9C+0LLRgtC+0YDQtdC90LjRj1wiINC+0LrQvtC70L4g0YDQtdCw0LvQvdC40Y8g4oiSNDIlLCDRgSDRgNCw0LfRgdC10LnQstCw0L3QtVxuICAgIGNvbnN0IHUxID0gcigpLCB1MiA9IHIoKVxuICAgIGNvbnN0IHogPSBNYXRoLnNxcnQoLTIgKiBNYXRoLmxvZyh1MSkpICogTWF0aC5jb3MoMiAqIE1hdGguUEkgKiB1MilcbiAgICBwb2ludHMucHVzaCh7aTogaSwgdmFsdWU6IC00MiArIHogKiAxMn0pXG4gIH1cbiAgcmV0dXJuIHBvaW50c1xufVxuXG5QbG90LnBsb3Qoe1xuICB3aWR0aDogcGxvdFdpZHRoLFxuICBoZWlnaHQ6IDI4MCxcbiAgbWFyZ2luTGVmdDogNjAsXG4gIG1hcmdpblJpZ2h0OiA0MCxcbiAgbWFyZ2luQm90dG9tOiA1MCxcbiAgc3R5bGU6IHtmb250U2l6ZTogXCIxM3B4XCIsIGZvbnRGYW1pbHk6IFwiSW50ZXIsIHNhbnMtc2VyaWZcIn0sXG4gIHRpdGxlOiBcItCQ0LrQviBRNCAyMDI0INGB0LUg0YHQu9GD0YfQtdGI0LUgMTAwINC/0YrRgtC4IOKAlCDQutCw0LrQstC+INGJ0Y/RhdC80LUg0LTQsCDQstC40LTQuNC8P1wiLFxuICBzdWJ0aXRsZTogXCLQmNC70Y7RgdGC0YDQsNGG0LjRjzog4oiSNDIlINC1INC10LTQvdCwINGA0LXQsNC70LjQt9Cw0YbQuNGPINC90LAg0YjRg9C80LXQvSDQv9GA0L7RhtC10YEsINC90LUg4oCe0LjRgdGC0LjQvdCw0YLQsOKAnFwiLFxuICB4OiB7bGFiZWw6IFwiUTQg0L3QtdGC0L3QsCDQv9C10YfQsNC70LHQsCwgJSDQv9GA0L7QvNGP0L3QsCDRgdC/0YDRj9C80L4gUTQgMjAyMyDihpJcIiwgZ3JpZDogdHJ1ZSwgZG9tYWluOiBbLTgwLCAwXX0sXG4gIHk6IHtsYWJlbDogbnVsbCwgYXhpczogbnVsbH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5kb3QocmFuZG9tMTAwLCB7XG4gICAgICB4OiBcInZhbHVlXCIsIFxuICAgICAgeTogKCkgPT4gTWF0aC5yYW5kb20oKSxcbiAgICAgIHI6IDQsXG4gICAgICBmaWxsOiBkID0+IE1hdGguYWJzKGQudmFsdWUgLSAoLTQyKSkgPCAxID8gXCIjZGMyNjI2XCIgOiBcIiM5NGEzYjhcIixcbiAgICAgIHN0cm9rZTogZCA9PiBNYXRoLmFicyhkLnZhbHVlIC0gKC00MikpIDwgMSA/IFwiIzdmMWQxZFwiIDogbnVsbCxcbiAgICAgIHN0cm9rZVdpZHRoOiAyLFxuICAgIH0pLFxuICAgIFBsb3QucnVsZVgoWy00Ml0sIHtzdHJva2U6IFwiI2RjMjYyNlwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwyXCJ9KSxcbiAgICBQbG90LnRleHQoW3t4OiAtNDIsIGxhYmVsOiBcItCg0LXQsNC70L3QviDQuNC30LzQtdGA0LXQvdC+OiDiiJI0MiVcIn1dLCB7XG4gICAgICB4OiBcInhcIiwgeTogMS4wNSwgdGV4dDogXCJsYWJlbFwiLFxuICAgICAgZm9udFNpemU6IDEzLCBmb250V2VpZ2h0OiBcImJvbGRcIiwgZmlsbDogXCIjN2YxZDFkXCIsXG4gICAgfSksXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjb250cmFzdERhdGEgPSBbXG4gIHtraW5kOiBcItCf0YDQuNGF0L7QtNC4IDIwMjRcIiwgdmFsdWU6IDEyLjksIGxvdzogMTAsIGhpZ2g6IDE2LCBmaWxsOiBcIiMxNmEzNGFcIiwgbGFiZWw6IFwi0J/RgNC40YXQvtC00Lg6ICsxMi45JSAo0LLQtdGA0L7Rj9GC0L3QviArMTAlINC00L4gKzE2JSlcIn0sXG4gIHtraW5kOiBcItCd0LXRgtC90LAg0L/QtdGH0LDQu9Cx0LAgMjAyNFwiLCB2YWx1ZTogLTEwLjUsIGxvdzogLTE4LCBoaWdoOiAtMywgZmlsbDogXCIjZGMyNjI2XCIsIGxhYmVsOiBcItCd0LXRgtC90LAg0L/QtdGH0LDQu9Cx0LA6IOKIkjEwLjUlICjQstC10YDQvtGP0YLQvdC+IOKIkjE4JSDQtNC+IOKIkjMlKVwifSxcbl1cblxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IHBsb3RXaWR0aCxcbiAgaGVpZ2h0OiAzMjAsXG4gIG1hcmdpbkxlZnQ6IDIwMCxcbiAgbWFyZ2luUmlnaHQ6IDEwMCxcbiAgc3R5bGU6IHtmb250U2l6ZTogXCIxNHB4XCIsIGZvbnRGYW1pbHk6IFwiSW50ZXIsIHNhbnMtc2VyaWZcIn0sXG4gIHRpdGxlOiBcItCh0YrRidC40Y/RgiDQutC+0L3RgtGA0LDRgdGCIOKAlCDQvdC+INGBINC40L3RgtC10YDQstCw0LssINC90LUg0YEg0YLQvtGH0LrQsFwiLFxuICBzdWJ0aXRsZTogXCLQmNC70Y7RgdGC0YDQsNGC0LjQstC90LggJ9GA0LDQt9GD0LzQvdC4JyDQuNC90YLQtdGA0LLQsNC70LgsINC+0YLRh9C40YLQsNC50LrQuCDRiNGD0Lwg0LIg0LTQsNC90L3QuNGC0LVcIixcbiAgeDoge2xhYmVsOiBcItCf0YDQvtC80Y/QvdCwINGB0L/RgNGP0LzQviAyMDIzICglKSDihpJcIiwgZ3JpZDogdHJ1ZSwgZG9tYWluOiBbLTI1LCAyMF19LFxuICB5OiB7bGFiZWw6IG51bGwsIGRvbWFpbjogY29udHJhc3REYXRhLm1hcChkID0+IGQua2luZCl9LFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVgoWzBdLCB7c3Ryb2tlOiBcIiMxYTFhMmVcIn0pLFxuICAgIFBsb3QucnVsZVkoY29udHJhc3REYXRhLCB7XG4gICAgICB5OiBcImtpbmRcIiwgeDE6IFwibG93XCIsIHgyOiBcImhpZ2hcIixcbiAgICAgIHN0cm9rZTogXCJmaWxsXCIsIHN0cm9rZVdpZHRoOiAxNCwgc3Ryb2tlT3BhY2l0eTogMC4yNSxcbiAgICB9KSxcbiAgICBQbG90LmRvdChjb250cmFzdERhdGEsIHtcbiAgICAgIHk6IFwia2luZFwiLCB4OiBcInZhbHVlXCIsIHI6IDcsIGZpbGw6IFwiZmlsbFwiLCBzdHJva2U6IFwid2hpdGVcIiwgc3Ryb2tlV2lkdGg6IDIsXG4gICAgfSksXG4gICAgUGxvdC50ZXh0KGNvbnRyYXN0RGF0YSwge1xuICAgICAgeTogXCJraW5kXCIsIHg6IFwidmFsdWVcIiwgdGV4dDogXCJsYWJlbFwiLFxuICAgICAgZHk6IC0yMiwgZm9udFNpemU6IDEyLCBmb250V2VpZ2h0OiBcImJvbGRcIixcbiAgICAgIGZpbGw6IGQgPT4gZC52YWx1ZSA+PSAwID8gXCIjMTU4MDNkXCIgOiBcIiNiOTFjMWNcIixcbiAgICB9KSxcbiAgXVxufSlcbiJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../..";
+    window._ojs.paths.runtimeToRoot = "../../../..";
+    window._ojs.paths.docToRoot = "..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Копирано!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Копирано!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -42,6 +42,7 @@ Published on GitHub Pages: [quantumjazz.github.io/data_driven_business_decisions
 | 05 | Customer Behaviour Analysis *(Module 3 — Week 7)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-05/) |
 | 06 | Optimization for Everyone *(Module 4 — Week 9)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-06/) |
 | 08 | Communicating Data *(Module 5 — Week 12)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-08/) |
+| 09 | Ethics and Privacy *(Module 5 — Week 13)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-09/) |
 
 ---
 
@@ -98,6 +99,8 @@ data_driven_business_decisions/
 ├── lecture-08/          # Source files for Lecture 8
 │   ├── index.qmd        # Quarto slide source
 │   └── spidi-data.xlsx  # Speedy AD 2024 dataset (Bulgarian)
+├── lecture-09/          # Source files for Lecture 9
+│   └── index.qmd        # Quarto slide source
 ├── docs/                # Rendered HTML (served via GitHub Pages)
 │   ├── lecture-01/
 │   │   └── index.html
@@ -111,7 +114,9 @@ data_driven_business_decisions/
 │   │   └── index.html
 │   ├── lecture-06/
 │   │   └── index.html
-│   └── lecture-08/
+│   ├── lecture-08/
+│   │   └── index.html
+│   └── lecture-09/
 │       └── index.html
 ├── _quarto.yml          # Quarto project configuration
 ├── styles.scss          # Custom slide styles

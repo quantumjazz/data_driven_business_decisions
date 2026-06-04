@@ -43,6 +43,7 @@ Published on GitHub Pages: [quantumjazz.github.io/data_driven_business_decisions
 | 06 | Optimization for Everyone *(Module 4 — Week 9)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-06/) |
 | 08 | Communicating Data *(Module 5 — Week 12)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-08/) |
 | 09 | Ethics and Privacy *(Module 5 — Week 13)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-09/) |
+| 10 | Your Analytics Toolkit — the ETL Process *(Module 5 — Week 14)* | [▶ View Slides](https://quantumjazz.github.io/data_driven_business_decisions/lecture-10/) |
 
 ---
 
@@ -101,6 +102,9 @@ data_driven_business_decisions/
 │   └── spidi-data.xlsx  # Speedy AD 2024 dataset (Bulgarian)
 ├── lecture-09/          # Source files for Lecture 9
 │   └── index.qmd        # Quarto slide source
+├── lecture-10/          # Source files for Lecture 10 (ETL — final lecture)
+│   ├── index.qmd        # Quarto slide source
+│   └── data-raw/        # Messy raw fuel-price files + reference + clean TARGET (ETL exercise)
 ├── docs/                # Rendered HTML (served via GitHub Pages)
 │   ├── lecture-01/
 │   │   └── index.html
